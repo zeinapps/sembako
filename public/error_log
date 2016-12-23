@@ -1,0 +1,1 @@
+[16-Dec-2016 08:36:52 UTC] PHP Fatal error:  Call to undefined function App\Http\Controllers\cofig() in /home/ready/public_html/adminrumahsembako/app/Http/Controllers/BarangController.php on line 111
