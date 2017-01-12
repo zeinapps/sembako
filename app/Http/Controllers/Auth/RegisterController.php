@@ -71,9 +71,10 @@ class RegisterController extends Controller
         ]);
     }
     
-    public function showRegistrationForm()
+    public function showRegistrationForm(Request $request)
     {
-        abort(404);
+        $callback = $request->callback ? $request->callback : '';
+        return view('eshop.auth.register',['callback' => $callback]);
     }
     
     public function register(Request $request)

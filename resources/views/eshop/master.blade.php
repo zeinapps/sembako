@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>LOcalhost</title>
+        <title>TOKO ONLINE</title>
         <link href="/eshop/css/bootstrap.min.css" rel="stylesheet">
         <link href="/eshop/css/font-awesome.min.css" rel="stylesheet">
         <link href="/eshop/css/prettyPhoto.css" rel="stylesheet">
@@ -55,16 +55,28 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="logo pull-left">
-                                <a href="/"><span>LU</span>-MINTU</a>
+                                <a href="/"><span>TOKO</span> ONLINE</a>
                             </div>
                         </div>
                         <div class="col-sm-8">
                             <div class="shop-menu pull-right">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="/akun"><i class="fa fa-user"></i> Akun</a></li>
                                     <li><a href="/pembayaran"><i class="fa fa-crosshairs"></i> Pembayaran</a></li>
                                     <li><a href="/keranjang"><i class="fa fa-shopping-cart"></i> Keranjang</a></li>
+                                    @if (Auth::guest())
                                     <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
+                                    <li><a href="/register"><i class="fa fa-user"></i> Daftar</a></li>
+                                    @else
+                                    <li><a href="/akun"><i class="fa fa-user"></i> Akun</a></li>
+                                    <li><a href="{{ url('/logout') }}"
+                                           onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-unlock"></i> Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>

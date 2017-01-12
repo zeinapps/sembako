@@ -75,16 +75,16 @@ class ProdukController extends Controller
                 ->where('barang.id' ,$id)->first();
         
         $rekomended = Barang::whereNotIn('id',[$query->id])
-		->where('kategori_id',$query->kategori_id)
+//		->where('kategori_id',$query->kategori_id)
 		->orderBy(DB::raw('RAND()'))
-		->take(8)->get();
+		->take(6)->get();
         
         $rekomended1 = [];
         $rekomended2 = [];
         $i = 0;
         foreach ($rekomended as $reko) {
             $i++;
-            if($i <=4 ){
+            if($i <=3 ){
                 $rekomended1[] = $reko;
             }else{
                 $rekomended2[] = $reko;

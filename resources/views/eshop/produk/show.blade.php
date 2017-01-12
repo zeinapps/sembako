@@ -40,7 +40,7 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                 @foreach ($rekomended1 as $v)
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
@@ -58,7 +58,7 @@
                             </div>
                             <div class="item">	
                                 @foreach ($rekomended2 as $v)
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
