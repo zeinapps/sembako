@@ -18,7 +18,7 @@
                         <div class="product-information"><!--/product-information-->
                             <img src="/eshop/images/product-details/new.jpg" class="newarrival" alt="" />
                             <h2>{{ $produk->nama }}</h2>
-                            <p>Barcode: {{ $produk->barcode ? $produk->barcode : '-' }}</p>
+                            <p>Keterangan: {{ $produk->keterangan ? $produk->keterangan : '-' }}</p>
                             <span>
                                 <span>IDR {{ $produk->hargaonline }}</span><br>
                                 <label>Quantity:</label>

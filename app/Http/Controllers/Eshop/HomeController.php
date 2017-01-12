@@ -25,14 +25,14 @@ class HomeController extends Controller
                 ->take($paginasi)->get();
         
         $rekomended = Barang::orderBy(DB::raw('RAND()'))
-		->take(8)->get();
+		->take(6)->get();
         
         $rekomended1 = [];
         $rekomended2 = [];
         $i = 0;
         foreach ($rekomended as $reko) {
             $i++;
-            if($i <=4 ){
+            if($i <=3 ){
                 $rekomended1[] = $reko;
             }else{
                 $rekomended2[] = $reko;

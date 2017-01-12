@@ -2,10 +2,11 @@
 
 return [
     'paginasi' => 10,
-    'paginasi_produk' => 9,
+    'paginasi_produk' => 6,
+    'paginasi_pencarian_produk' => 12,
     'image_path_produk' => '/app/public/images/produk',
     'image_url_produk' => '/storage/images/produk',
-    'resolusi_gambar' => [450,150,85],// urut tebesar sampai terkecil
+    'resolusi_gambar' => [450,250,85],// urut tebesar sampai terkecil
     /*
     |--------------------------------------------------------------------------
     | Application Name

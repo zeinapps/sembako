@@ -20,7 +20,7 @@ use Storage;
 class ProdukController extends Controller
 {
     public function index(Request $request){
-        $paginasi = config('app.paginasi_produk');
+        $paginasi = config('app.paginasi_pencarian_produk');
         if(!$request->page){
             $rownum = 0;
         }else{
@@ -29,16 +29,19 @@ class ProdukController extends Controller
         $s = null;
         DB::statement(DB::raw("set @rownum=$rownum"));
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
-                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga',
+                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
                         'hargaonline','kategori_barang.nama as kategori','gambar')
                 ->orderBy('id','desc');
         if($request->s){
             $querys = $querys->where('barang.nama' ,'like' , "%$request->s%");
             $querys = $querys->orWhere('kategori_barang.nama' ,'like' , "%$request->s%");
             $s = $request->s;
+            $title = 'Hasil Pencarian "'.$request->s.'"';
+        }else{
+            $title = 'Semua Produk';
         }
         $querys = $querys->paginate($paginasi);
-        return view('eshop/produk/index', ['data' => $querys, 's' => $s]);
+        return view('eshop/produk/index', ['data' => $querys, 's' => $s, 'title' => $title]);
     }
     
     public function kategori(Request $request, $id){
@@ -51,7 +54,7 @@ class ProdukController extends Controller
         $s = null;
         DB::statement(DB::raw("set @rownum=$rownum"));
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
-                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga',
+                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
                         'hargaonline','kategori_barang.nama as kategori','gambar')
                 ->where('kategori_id',$id)
                 ->orderBy('id','desc');
@@ -61,12 +64,13 @@ class ProdukController extends Controller
             $s = $request->s;
         }
         $querys = $querys->paginate($paginasi);
-        return view('eshop/produk/index', ['data' => $querys, 's' => $s]);
+        $title = 'Kategori '.$querys[0]->kategori;
+        return view('eshop/produk/index', ['data' => $querys, 's' => $s, 'title' => $title]);
     }
     
     public function show($id){
         $query = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
-                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga',
+                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
                         'hargaonline','kategori_barang.nama as kategori','gambar','barcode','kategori_id')
                 ->where('barang.id' ,$id)->first();
         

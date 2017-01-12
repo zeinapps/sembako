@@ -1,6 +1,6 @@
 <div class="col-sm-3">
     <div class="left-sidebar">
-        <h2>Category</h2>
+        <h2>Etalase</h2>
         
         <div class="panel-group category-products" id="accordian"><!--category-productsr-->
             @foreach(json_decode(Storage::get('json/kategori_barang.json')) as $parent)

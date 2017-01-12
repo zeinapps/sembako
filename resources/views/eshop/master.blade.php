@@ -22,6 +22,15 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/eshop/images/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/eshop/images/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="/eshop/images/ico/apple-touch-icon-57-precomposed.png">
+        <style>
+            .floating{
+                position: fixed; 
+                top: 0px; 
+                z-index: 1000;
+                width:100%;
+            }
+            
+        </style>
     </head><!--/head-->
 
     <body>
@@ -78,27 +87,48 @@
                             <div class="mainmenu pull-left">
                                 <ul class="nav navbar-nav collapse navbar-collapse">
                                     <li><a href="/" class="active">Home</a></li>
-                                    
+
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+<!--                        <div class="col-sm-3">
                             <form action="{{ url('/produk') }}" method="GET">
-                            <div class="search_box pull-right">
-                                <input type="text" placeholder="Search" name="s" value="@if(isset($s)){{  $s ? $s : '' }}@endif"/>
-                            </div>
-                                </form>
-                        </div>
-                        
+                                <div class="search_box pull-right">
+                                    <input type="text" placeholder="Search" name="s" value="@if(isset($s)){{  $s ? $s : '' }}@endif"/>
+                                </div>
+                            </form>
+                        </div>-->
+
                     </div>
                 </div>
             </div><!--/header-bottom-->
         </header><!--/header-->
+        <br>
+        <section>
+            <div class="container" id="header-search" style="width:100%; ">
+                <nav class="row" id="search-form">
+                    <div class="col-sm-12">
+                        <form action="{{ url('/produk') }}" method="GET">
+                            <div class="input-group input-group-lg col-md-6 col-md-offset-3">
+                                <input placeholder="Pencarian Produk" name="s"  autofocus="" class="form-control" type="text" value="@if(isset($s)){{  $s ? $s : '' }}@endif">
+                                <span class="input-group-btn">
+                                    <button id="sbtn" class="btn btn-primary" type="submit" style="margin-top: 0px;">
+                                        Cari
+                                    </button> 
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
 
+        </section>
+        <br>
+        
         @yield('content')
 
         <footer id="footer"><!--Footer-->
-            
+
 
             <div class="footer-bottom">
                 <div class="container">
@@ -119,5 +149,17 @@
         <script src="/eshop/js/price-range.js"></script>
         <script src="/eshop/js/jquery.prettyPhoto.js"></script>
         <script src="/eshop/js/main.js"></script>
+        <script>
+            $(document).ready( function() {
+
+            $(window).scroll( function() {
+                if ($(window).scrollTop() > $('#header-search').offset().top)
+                    $('#search-form').addClass('floating');
+                else
+                    $('#search-form').removeClass('floating');
+            } );
+
+        } );
+        </script>
     </body>
 </html>

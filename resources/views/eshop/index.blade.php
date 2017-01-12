@@ -1,7 +1,7 @@
 @extends('eshop.master')
 @section('content')
 
-<section id="slider"><!--slider-->
+<!--<section id="slider">slider
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -37,22 +37,22 @@
             </div>
         </div>
     </div>
-</section><!--/slider-->
+</section>/slider-->
 
 <section>
     <div class="container">
         <div class="row">
                         
-            <div class="col-sm-9 padding-right">
+            <div class="col-sm-9 row">
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Features Items</h2>
                     @foreach ($data as $v)
-                    <div class="col-sm-4">
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <a href="{{ url("/produk/".$v->id) }}">
-                                        <img src="{{ Config::get("app.image_url_produk")."/150/".$v->gambar }}" alt="" />
+                                        <img src="{{ Config::get("app.image_url_produk")."/250/".$v->gambar }}" alt="" />
                                     </a>
                                     <h2>IDR {{ $v->hargaonline }}</h2>
                                     <h3><strong>{{ $v->nama }}</strong></h3>
@@ -76,7 +76,7 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                 @foreach ($rekomended1 as $v)
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
@@ -94,7 +94,7 @@
                             </div>
                             <div class="item">	
                                 @foreach ($rekomended2 as $v)
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">

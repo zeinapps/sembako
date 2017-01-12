@@ -62,6 +62,17 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="keterangan" class="col-md-4 control-label">Keterangan:</label>
+                <div class="col-md-6">
+                    <input id="nama" type="text" class="form-control" name="keterangan" value="{{ isset($keterangan) ? $keterangan : old('keterangan') }}" required autofocus>
+                    @if ($errors->has('keterangan'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('keterangan') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="gambar" class="col-md-4 control-label">Gambar:</label>
                 <div class="col-md-6">
                     <div class="input-group">
