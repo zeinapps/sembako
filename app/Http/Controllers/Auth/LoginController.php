@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\User;
+use Auth;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -80,8 +80,11 @@ class LoginController extends Controller
                         ->withInput();
         }
         
-             
-        $redirect = $request->callback ? $request->callback : 'akun';
+        $redirect = $request->callback ? $request->callback : '/akun';
+        
+        if(Auth::user()->isadmin){
+            $redirect = 'home';
+        }
         
         return redirect($redirect);
     }

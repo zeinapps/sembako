@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth','isadmin']], function () {
      
     Route::get('/kategoribarang', 'KategoribarangController@index');
     Route::post('/kategoribarang', 'KategoribarangController@store');
