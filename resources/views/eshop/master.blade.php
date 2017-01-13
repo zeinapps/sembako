@@ -29,7 +29,7 @@
                 z-index: 1000;
                 width:100%;
             }
-            
+
         </style>
     </head><!--/head-->
 
@@ -103,13 +103,13 @@
                                 </ul>
                             </div>
                         </div>
-<!--                        <div class="col-sm-3">
-                            <form action="{{ url('/produk') }}" method="GET">
-                                <div class="search_box pull-right">
-                                    <input type="text" placeholder="Search" name="s" value="@if(isset($s)){{  $s ? $s : '' }}@endif"/>
-                                </div>
-                            </form>
-                        </div>-->
+                        <!--                        <div class="col-sm-3">
+                                                    <form action="{{ url('/produk') }}" method="GET">
+                                                        <div class="search_box pull-right">
+                                                            <input type="text" placeholder="Search" name="s" value="@if(isset($s)){{  $s ? $s : '' }}@endif"/>
+                                                        </div>
+                                                    </form>
+                                                </div>-->
 
                     </div>
                 </div>
@@ -136,7 +136,7 @@
 
         </section>
         <br>
-        
+
         @yield('content')
 
         <footer id="footer"><!--Footer-->
@@ -159,19 +159,159 @@
         <script src="/eshop/js/bootstrap.min.js"></script>
         <script src="/eshop/js/jquery.scrollUp.min.js"></script>
         <script src="/eshop/js/price-range.js"></script>
+        <script src="/eshop/js/jquery.cookie.js"></script>
         <script src="/eshop/js/jquery.prettyPhoto.js"></script>
         <script src="/eshop/js/main.js"></script>
         <script>
-            $(document).ready( function() {
+            $(document).ready(function () {
 
-            $(window).scroll( function() {
-                if ($(window).scrollTop() > $('#header-search').offset().top)
-                    $('#search-form').addClass('floating');
-                else
-                    $('#search-form').removeClass('floating');
-            } );
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > $('#header-search').offset().top)
+                        $('#search-form').addClass('floating');
+                    else
+                        $('#search-form').removeClass('floating');
+                });
 
-        } );
+            });
         </script>
+
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4  class="modal-title">Tentukan Jumlah Pesanan</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div style="text-align: center">
+                            <img id="modal_img" src="" alt="" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Nama:</label>
+                            <input id="modal_nama" type="text" class="form-control" disabled="">
+                            <input type="hidden" class="form-control" id="modal_id" >
+                            <input type="hidden" class="form-control" id="modal_harga" >
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Jumlah:</label>
+                            <div class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <button type="button" class="btn btn-success" id="modal_button_plus"> + </button>
+                                    <input id="modal_input_jumlah" class="cart_quantity_input" value="1" autocomplete="off" size="2" type="text">
+                                    <button type="button" class="btn btn-danger" id="modal_button_minus"> - </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="modal_tambahkan" type="button" class="btn btn-default">Tambahkan</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            
+            var jkeranjang = $.cookie('keranjang') ?  $.cookie('keranjang') : '[]';
+            var arkeranjang = jQuery.parseJSON( jkeranjang );
+            for(var i in arkeranjang){
+                var total = parseInt(arkeranjang[i].harga) * parseInt(arkeranjang[i].jumlah);
+                var row = "<tr>\n\
+                            <td class='cart_product'>\n\
+                                <a href=''><img src='"+ arkeranjang[i].image +"' alt=''></a>\n\
+                            </td>\n\
+                            <td class='cart_description'>\n\
+                                <h4><a href=''>"+ arkeranjang[i].nama +"</a></h4>\n\
+                                <p>Barcode: -</p>\n\
+                            </td>\n\
+                            <td class='cart_price'>\n\
+                                <p>IDR "+ arkeranjang[i].harga +"</p>\n\
+                            </td>\n\
+                            <td class='cart_quantity'>\n\
+                                <div class='cart_quantity_button'>\n\
+                                    <a class='cart_quantity_up' href=''> + </a>\n\
+                                    <input class='cart_quantity_input' type='text' name='quantity' value='"+ arkeranjang[i].jumlah +"' autocomplete='off' size='2'>\n\
+                                    <a class='cart_quantity_down' href=''> - </a>\n\
+                                </div>\n\
+                            </td>\n\
+                            <td class='cart_total'>\n\
+                                <p class='cart_total_price'>IDR "+ total +"</p>\n\
+                            </td>\n\
+                            <td class='cart_delete'>\n\
+                                <a class='cart_quantity_delete' href=''><i class='fa fa-times'></i></a>\n\
+                            </td>\n\
+                        </tr>\n\
+                        ";
+                $("#tbody_keranjang").append(row);
+            }
+            
+            $("#modal_tambahkan").click(function () {
+                
+                var id_produk = $("#modal_id").val();
+                var jumlah_produk = $("#modal_input_jumlah").val();
+                var nama = $("#modal_nama").val();
+                var image = $("#modal_img").attr('src');
+                var harga = $("#modal_harga").val();
+                
+                var json_keranjang = $.cookie('keranjang') ?  $.cookie('keranjang') : '[]';
+                var array_keranjang = jQuery.parseJSON( json_keranjang );
+                
+                var in_array = false;
+                var x_array = null;
+                for(var x in array_keranjang){
+                    if(array_keranjang[x].id === id_produk){
+                        x_array = x;
+                        in_array = true;
+                        break;
+                    }
+                }
+                if(in_array){
+                    array_keranjang[x_array].jumlah = parseInt(array_keranjang[x_array].jumlah) + parseInt(jumlah_produk);
+                }else{
+                    var new_item = {"id":id_produk,"jumlah":jumlah_produk,"harga":harga,"nama":nama,"image":image};
+                    array_keranjang.push(new_item);
+                }
+                $.cookie('keranjang', JSON.stringify(array_keranjang));
+                $('#myModal').modal('hide');
+            });
+            
+            function openmodal(id, nama, img,harga) {
+                $("#modal_nama").val(nama);
+                $("#modal_id").val(id);
+                $("#modal_harga").val(harga);
+                $("#modal_img").attr('src', img);
+                $("#modal_input_jumlah").val(1);
+            }
+            $("#modal_button_plus").click(function () {
+                $("#modal_input_jumlah").val((parseInt($("#modal_input_jumlah").val()) + 1));
+            });
+            $("#modal_button_minus").click(function () {
+                if (parseInt($("#modal_input_jumlah").val()) > 1) {
+                    $("#modal_input_jumlah").val((parseInt($("#modal_input_jumlah").val()) - 1));
+                }
+            });
+            $("#modal_input_jumlah").keydown(function (e) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                        // Allow: Ctrl+A
+                                (e.keyCode == 65 && e.ctrlKey === true) ||
+                                // Allow: Ctrl+C
+                                        (e.keyCode == 67 && e.ctrlKey === true) ||
+                                        // Allow: Ctrl+X
+                                                (e.keyCode == 88 && e.ctrlKey === true) ||
+                                                // Allow: home, end, left, right
+                                                        (e.keyCode >= 35 && e.keyCode <= 39)) {
+                                            // let it happen, don't do anything
+                                            return;
+                                        }
+                                        // Ensure that it is a number and stop the keypress
+                                        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                                            e.preventDefault();
+                                        }
+                                    });
+        </script>
+        
     </body>
 </html>

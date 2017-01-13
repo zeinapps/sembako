@@ -15,6 +15,7 @@ Route::get('/', 'Eshop\HomeController@index');
 Route::get('produk', 'Eshop\ProdukController@index');
 Route::get('produk/{id}', 'Eshop\ProdukController@show');
 Route::get('kategori/{id}', 'Eshop\ProdukController@kategori');
+Route::get('keranjang', 'Eshop\ProdukController@keranjang');
 
 Auth::routes();
 

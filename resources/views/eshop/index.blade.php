@@ -58,7 +58,7 @@
                                     <h3><strong>{{ $v->nama }}</strong></h3>
                                     <p>{{ $v->kategori }}</p>
                                     <a href="{{ url("/produk/".$v->id) }}" class="btn btn-info add-to-cart"><i class="fa fa-eye"></i>Lihat</a>
-                                    <a href="#" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$v->id}}','{{$v->nama}}','{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}','{{$v->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
                                 </div>
                                 
                             </div>

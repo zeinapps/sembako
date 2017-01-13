@@ -99,4 +99,8 @@ class ProdukController extends Controller
         
         return view('eshop/produk/show', $data );
     }
+    
+    public function keranjang(){
+        return view('eshop/produk/keranjang' );
+    }
 }
