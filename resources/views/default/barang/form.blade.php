@@ -62,9 +62,20 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="barcode" class="col-md-4 control-label">Barcode:</label>
+                <div class="col-md-6">
+                    <input id="nama" type="text" class="form-control" name="barcode" value="{{ isset($barcode) ? $barcode : old('barcode') }}"  autofocus>
+                    @if ($errors->has('barcode'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('barcode') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="keterangan" class="col-md-4 control-label">Keterangan:</label>
                 <div class="col-md-6">
-                    <input id="nama" type="text" class="form-control" name="keterangan" value="{{ isset($keterangan) ? $keterangan : old('keterangan') }}" required autofocus>
+                    <input id="nama" type="text" class="form-control" name="keterangan" value="{{ isset($keterangan) ? $keterangan : old('keterangan') }}"  autofocus>
                     @if ($errors->has('keterangan'))
                     <span class="help-block">
                         <strong>{{ $errors->first('keterangan') }}</strong>

@@ -96,6 +96,7 @@ class BarangController extends Controller
                 'hpp' => $request->hpp,
                 'harga' => $request->harga,
                 'hargaonline' => $request->hargaonline,
+                'barcode' => $request->barcode,
                 'keterangan' => $request->keterangan,
             ];
         
