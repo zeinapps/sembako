@@ -23,10 +23,7 @@
                                 <span>IDR {{ $produk->hargaonline }}</span><br>
                                 <label>Quantity:</label>
                                 <input type="text" value="1" />
-                                <button type="button" class="btn btn-fefault cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Add to cart
-                                </button>
+                                <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$produk->id}}','{{$produk->nama}}','{{ Config::get("app.image_url_produk")."/85/".$produk->gambar }}','{{$produk->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
                             </span>
                             <a href=""><img src="/eshop/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
                         </div><!--/product-information-->
@@ -49,7 +46,7 @@
                                                 </a>
                                                 <h2>IDR {{ $v->hargaonline }}</h2>
                                                 <p>{{ $v->nama }}</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$v->id}}','{{$v->nama}}','{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}','{{$v->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +64,7 @@
                                                 </a>
                                                 <h2>IDR {{ $v->hargaonline }}</h2>
                                                 <p>{{ $v->nama }}</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$v->id}}','{{$v->nama}}','{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}','{{$v->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
                                             </div>
                                         </div>
                                     </div>
@@ -86,14 +83,6 @@
 
             </div>
             @include('eshop.sidebar')
-        </div>
-    </div>
-    <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <ul class="list-inline item-details">
-                <li><a href="http://themifycloud.com">ThemifyCloud</a></li>
-                <li><a href="http://themescloud.org">ThemesCloud</a></li>
-            </ul>
         </div>
     </div>
 </section>
