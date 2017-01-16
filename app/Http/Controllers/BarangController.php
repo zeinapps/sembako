@@ -103,8 +103,11 @@ class BarangController extends Controller
         if(!$request->id){
             Barang::insert(array_merge($params,$urlgambar));
         }else{
+            if($urlgambar['gambar'] != 'no_image.png'){
+                $params = array_merge($params,$urlgambar);
+            }
             Barang::where('id',$request->id)
-                    ->update(array_merge($params,$urlgambar));
+                    ->update($params);
         }
         return redirect('barang')->with('status', ['Sukses Tambah/Ubah Data']);
     }

@@ -61,13 +61,14 @@
                         <div class="col-sm-8">
                             <div class="shop-menu pull-right">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="/pembayaran"><i class="fa fa-crosshairs"></i> Pembayaran</a></li>
-                                    <li><a href="/keranjang"><i class="fa fa-shopping-cart"></i> Keranjang</a></li>
+                                    <li><a href="/keranjang"><i class="fa fa-shopping-cart"></i> Keranjang <span class="label label-danger" id="jumlah_item_keranjang">0</span></a></li>
                                     @if (Auth::guest())
                                     <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
                                     <li><a href="/register"><i class="fa fa-user"></i> Daftar</a></li>
                                     @else
                                     <li><a href="/akun"><i class="fa fa-user"></i> Akun</a></li>
+                                    <li><a href="/kesukaan"><i class="fa fa-crosshairs"></i> Kesukaan</a></li>
+                                    <li><a href="/transaksi"><i class="fa fa-table"></i> Transaksi</a></li>
                                     <li><a href="{{ url('/logout') }}"
                                            onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">
@@ -122,7 +123,7 @@
                     <div class="col-sm-12">
                         <form action="{{ url('/produk') }}" method="GET">
                             <div class="input-group input-group-lg col-md-6 col-md-offset-3">
-                                <input placeholder="Pencarian Produk" name="s"  autofocus="" class="form-control" type="text" value="@if(isset($s)){{  $s ? $s : '' }}@endif">
+                                <input placeholder="Pencarian Produk" name="s"  class="form-control" type="text" value="@if(isset($s)){{  $s ? $s : '' }}@endif">
                                 <span class="input-group-btn">
                                     <button id="sbtn" class="btn btn-primary" type="submit" style="margin-top: 0px;">
                                         Cari
@@ -212,10 +213,16 @@
                 </div>
             </div>
         </div>
+        @if (count(session('deletecokies')) > 0)
+        <script>
+            $.removeCookie('keranjang');
+        </script>
+        @endif
         <script>
             
             var jkeranjang = $.cookie('keranjang') ?  $.cookie('keranjang') : '[]';
             var arkeranjang = jQuery.parseJSON( jkeranjang );
+            $("#jumlah_item_keranjang").text(arkeranjang.length);
             for(var i in arkeranjang){
                 var total = parseInt(arkeranjang[i].harga) * parseInt(arkeranjang[i].jumlah);
                 var row = "<tr>\n\
@@ -232,7 +239,8 @@
                             <td class='cart_quantity'>\n\
                                 <div class='cart_quantity_button'>\n\
                                     <a class='cart_quantity_up' href=''> + </a>\n\
-                                    <input class='cart_quantity_input' type='text' name='quantity' value='"+ arkeranjang[i].jumlah +"' autocomplete='off' size='2'>\n\
+                                    <input type='hidden' value='"+ arkeranjang[i].id +"' name='id[]' />\n\
+                                    <input class='cart_quantity_input' type='text' name='jumlah[]' value='"+ arkeranjang[i].jumlah +"' autocomplete='off' size='2'>\n\
                                     <a class='cart_quantity_down' href=''> - </a>\n\
                                 </div>\n\
                             </td>\n\
@@ -273,6 +281,7 @@
                     var new_item = {"id":id_produk,"jumlah":jumlah_produk,"harga":harga,"nama":nama,"image":image};
                     array_keranjang.push(new_item);
                 }
+                $("#jumlah_item_keranjang").text(array_keranjang.length);
                 $.cookie('keranjang', JSON.stringify(array_keranjang));
                 $('#myModal').modal('hide');
             });

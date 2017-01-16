@@ -4,115 +4,68 @@
     <div class="container">
         <div class="breadcrumbs">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li class="active">Shopping Cart</li>
+                <li><a href="/">Beranda</a></li>
+                <li class="active">Keranjang</li>
             </ol>
         </div>
-        <div class="table-responsive cart_info">
-            <table class="table table-condensed">
-                <thead>
-                    <tr class="cart_menu">
-                        <td class="image">Item</td>
-                        <td class="description"></td>
-                        <td class="price">Price</td>
-                        <td class="quantity">Quantity</td>
-                        <td class="total">Total</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody id="tbody_keranjang">
-               
-                    <tr>
-                <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-content">
-                        <ul class="list-inline item-details">
-                            <li><a href="http://themifycloud.com">Ecommerce templates</a></li>
-                            <li><a href="http://themescloud.org">Ecommerce themes</a></li>
-                        </ul>
-                    </div>
-                </div>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section> <!--/#cart_items-->
+        @include('default.notifikasi.error')
+        @include('default.notifikasi.success')
+        {!! Form::open(['url' => 'penjualan', 'method' => 'POST']) !!}
+        {{ Form::token() }}
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="image">Item</td>
+                            <td class="description"></td>
+                            <td class="price">Price</td>
+                            <td class="quantity">Quantity</td>
+                            <td class="total">Total</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_keranjang">
 
-<section id="do_action">
-    <div class="container">
-        <div class="heading">
-            <h3>What would you like to do next?</h3>
-            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
-        </div>
+                    </tbody>
+                </table>
+            </div>
         <div class="row">
             <div class="col-sm-6">
-                <div class="chose_area">
-                    <ul class="user_option">
-                        <li>
-                            <input type="checkbox">
-                            <label>Use Coupon Code</label>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <label>Use Gift Voucher</label>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <label>Estimate Shipping & Taxes</label>
-                        </li>
-                    </ul>
-                    <ul class="user_info">
-                        <li class="single_field">
-                            <label>Country:</label>
-                            <select>
-                                <option>United States</option>
-                                <option>Bangladesh</option>
-                                <option>UK</option>
-                                <option>India</option>
-                                <option>Pakistan</option>
-                                <option>Ucrane</option>
-                                <option>Canada</option>
-                                <option>Dubai</option>
-                            </select>
+                <div class="form-group">
+                    <label for="hpp" class="col-md-4 control-label">Dikirim ke:* </label>
 
-                        </li>
-                        <li class="single_field">
-                            <label>Region / State:</label>
-                            <select>
-                                <option>Select</option>
-                                <option>Dhaka</option>
-                                <option>London</option>
-                                <option>Dillih</option>
-                                <option>Lahore</option>
-                                <option>Alaska</option>
-                                <option>Canada</option>
-                                <option>Dubai</option>
-                            </select>
-
-                        </li>
-                        <li class="single_field zip-field">
-                            <label>Zip Code:</label>
-                            <input type="text">
-                        </li>
-                    </ul>
-                    <a class="btn btn-default update" href="">Get Quotes</a>
-                    <a class="btn btn-default check_out" href="">Continue</a>
+                    <input id="hpp" type="text" class="form-control" name="alamat" value="{{ isset(Auth::user()->alamat) ? Auth::user()->alamat : old('alamat') }}" required>
+                    @if ($errors->has('alamat'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('alamat') }}</strong>
+                    </span>
+                    @endif
+                    <p style="color: red;">*Ubah alamat pengiriman jika tidak sama dengan alamat Anda</p>
                 </div>
             </div>
             <div class="col-sm-6">
+
                 <div class="total_area">
+
                     <ul>
-                        <li>Cart Sub Total <span>$59</span></li>
-                        <li>Eco Tax <span>$2</span></li>
-                        <li>Shipping Cost <span>Free</span></li>
+                        <li>Sub Total <span>$59</span></li>
+                        <li>Biaya Kirim <span>Free</span></li>
                         <li>Total <span>$61</span></li>
                     </ul>
-                    <a class="btn btn-default update" href="">Update</a>
-                    <a class="btn btn-default check_out" href="">Check Out</a>
+                    @if (!Auth::guest())
+                    <button type="submit" class="btn btn-default check_out" >Kirim Pesanan</button>
+                    @else
+                    <div class="heading">
+                        <h3>Anda Belum login?</h3>
+                        <p>Pesanan hanya bisa dikirim setelah anda <a href="/login">login</a></p>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
+        {!! Form::close() !!}
+        <hr>
     </div>
-</section><!--/#do_action-->
+</section> <!--/#cart_items-->
 
 @endsection

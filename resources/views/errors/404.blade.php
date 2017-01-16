@@ -4,7 +4,7 @@
 <section>
     <div class="container text-center">
         <div class="logo-404">
-            <a href="/"><span>Lumintu</span></a>
+            <a href="/"><span>Toko Online</span></a>
         </div>
         <div class="content-404">
             <img src="/eshop/images/404/404.png" class="img-responsive" alt="" />

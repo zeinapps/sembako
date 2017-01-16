@@ -38,3 +38,7 @@ Route::group(['middleware' => ['auth','isadmin']], function () {
     Route::post('/barang/{id}', 'BarangController@destroy');
 });
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/penjualan', 'Eshop\PenjualanController@store');
+});
+
