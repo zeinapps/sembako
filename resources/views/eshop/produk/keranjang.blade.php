@@ -56,7 +56,7 @@
                         @else
                         <div class="heading">
                             <h3>Anda Belum login?</h3>
-                            <p>Pesanan hanya bisa dikirim setelah anda <a href="/login">login</a></p>
+                            <p>Pesanan hanya bisa dikirim setelah anda <a href="/login?callback=keranjang">login</a></p>
                         </div>
                         @endif
                     </div>

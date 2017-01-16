@@ -1,7 +1,7 @@
 @extends('eshop.master')
 @section('content')
 
-<section id="form" style="margin-top: 30px;"><!--form-->
+<section id="form" style="margin-top: 10px;"><!--form-->
     <div class="container">
         <div class="row">
             @include('default.notifikasi.error')
@@ -11,12 +11,13 @@
                     <h2>Masuk ke akun saya</h2>
                     <form method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
+                        <label>Hp:</label>
                         <input type="text" placeholder="HP contoh: 08677777" name="hp" />
+                        <label>Password:</label>
                         <input type="password" placeholder="Password" name="password"/>
                         <button type="submit" class="btn btn-default">Masuk</button>
-                        
-                            <h2 class="">ATAU</h2>
-                        <a href="/register" class="btn btn-info">Daftar</a>
+                        <input type="hidden" name="callback" value="{{ $callback }}" />
+                        <h4 class="">Jika belum punya akun, silahkan <a href="/register?callback={{ $callback }}">mendaftar.</a></h4>
                     </form>
                 </div><!--/login form-->
             </div>
