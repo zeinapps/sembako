@@ -20,7 +20,9 @@
                                     <h3><strong>{{ $v->nama }}</strong></h3>
                                     <p>{{ $v->kategori }}</p>
                                     <a href="{{ url("/produk/".$v->id) }}" class="btn btn-info add-to-cart"><i class="fa fa-eye"></i>Lihat</a>
+                                    @if (!Auth::guest())
                                     <a href="javascript: void(0)" onclick="suka({{$v->id}})" class="btn btn-info add-to-cart"><i class="fa fa-star"></i>Suka</a>
+                                    @endif
                                     <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$v->id}}','{{$v->nama}}','{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}','{{$v->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
                                 </div>
                                 

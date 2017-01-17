@@ -8,8 +8,7 @@ function fadeAlert() {
 }
 
 function suka(id) {
-//    var api_token = "{{Auth::user()->api_token}}";
-    var api_token = 21;
+    
     var data = [{barang_id: id}];
     $.ajax({
         url: "/api/suka?api_token=" + api_token, // Specify url to submit

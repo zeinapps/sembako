@@ -21,7 +21,7 @@ use DB;
 
 class AkunController extends Controller
 {
-    public function Kesukaan(Request $request){
+    public function kesukaan(Request $request){
         $paginasi = config('app.paginasi_pencarian_produk');
         if(!$request->page){
             $rownum = 0;

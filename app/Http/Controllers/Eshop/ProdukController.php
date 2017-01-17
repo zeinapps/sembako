@@ -64,7 +64,12 @@ class ProdukController extends Controller
             $s = $request->s;
         }
         $querys = $querys->paginate($paginasi);
-        $title = 'Kategori '.$querys[0]->kategori;
+        if(isset($querys[0]->kategori)){
+            $title = 'Kategori '.$querys[0]->kategori;
+        }else{
+            $title = "Not Found";
+        }
+        
         return view('eshop/produk/index', ['data' => $querys, 's' => $s, 'title' => $title]);
     }
     

@@ -160,7 +160,7 @@
 
         </footer><!--/Footer-->
 
-
+        
 
         <script src="/eshop/js/jquery.js"></script>
         <script src="/eshop/js/bootstrap.min.js"></script>
@@ -169,6 +169,11 @@
         <script src="/eshop/js/jquery.cookie.js"></script>
         <script src="/eshop/js/jquery.prettyPhoto.js"></script>
         <script src="/eshop/js/main.js"></script>
+        @if (!Auth::guest())
+            <script>
+                var api_token = '<?php echo Auth::user()->api_token ?>';
+            </script>
+        @endif
         <script>
             $(document).ready(function () {
 
