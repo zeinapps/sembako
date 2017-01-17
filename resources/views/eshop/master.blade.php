@@ -33,7 +33,7 @@
         </style>
     </head><!--/head-->
 
-    <body>
+    <body id="main">
         <header id="header"><!--header-->
             <div class="header_top"><!--header_top-->
                 <div class="container">
@@ -67,7 +67,7 @@
                                     <li><a href="/register"><i class="fa fa-user"></i> Daftar</a></li>
                                     @else
                                     <li><a href="/akun"><i class="fa fa-user"></i> Akun</a></li>
-                                    <li><a href="/kesukaan"><i class="fa fa-crosshairs"></i> Kesukaan</a></li>
+                                    <li><a href="/kesukaan"><i class="fa fa-star"></i> Kesukaan</a></li>
                                     <li><a href="/transaksi"><i class="fa fa-table"></i> Transaksi</a></li>
                                     <li><a href="{{ url('/logout') }}"
                                            onclick="event.preventDefault();
@@ -137,8 +137,14 @@
 
         </section>
         <br>
-
+        <div id="message" style="display: none;">
+            <div id="inner-message" class="alert alert-success alert-message">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        </div>
         @yield('content')
+        
+        
 
         <footer id="footer"><!--Footer-->
 

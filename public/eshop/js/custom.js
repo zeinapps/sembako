@@ -1,6 +1,51 @@
 
-if(window.location.pathname === '/keranjang'){
-    setKeranjang() ;
+function fadeAlert() {
+    window.setTimeout(function () {
+        $("#message").fadeTo(1500, 0).slideUp(500, function () {
+            $(this).css("display", "none");
+        });
+    }, 5000);
+}
+
+function suka(id) {
+//    var api_token = "{{Auth::user()->api_token}}";
+    var api_token = 21;
+    var data = [{barang_id: id}];
+    $.ajax({
+        url: "/api/suka?api_token=" + api_token, // Specify url to submit
+        type: 'post',
+        data: {data: data}, // Specify post data
+        dataType: 'json',
+        async: true,
+        success: function (json) {
+            $("#message").css("display", "block")
+            $("#message").css("opacity", "1")
+            if (json.status) {
+
+                $('#inner-message').removeClass('alert-success');
+                $('#inner-message').removeClass('alert-danger');
+                $('#inner-message').addClass('alert-success');
+                $('#inner-message').text('Like Sukses');
+            } else {
+                $('#inner-message').removeClass('alert-success');
+                $('#inner-message').removeClass('alert-danger');
+                $('#inner-message').addClass('Like Gagal');
+            }
+            fadeAlert();
+        }
+    });
+}
+
+
+$("button").click(function () {
+    $.get("/api", function (data, status) {
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+});
+
+
+if (window.location.pathname === '/keranjang') {
+    setKeranjang();
 }
 
 var jkrj = getCookieKeranjang();

@@ -41,8 +41,9 @@ Route::group(['middleware' => ['auth','isadmin']], function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/penjualan', 'Eshop\PenjualanController@store');
     Route::post('/ubahakun', 'Eshop\AkunController@store');
-    Route::post('/ubahpwd', 'Eshop\PenjualanController@storepwd');
-    Route::get('/ubahpwdform', 'Eshop\AkunController@ubahpwd');
+    Route::post('/ubahpwd', 'Eshop\AkunController@storepwd');
+    Route::get('/akunubahpwd', 'Eshop\AkunController@ubahpwd');
     Route::get('/akun', 'Eshop\AkunController@show');
+    Route::get('/kesukaan', 'Eshop\AkunController@kesukaan');
 });
 

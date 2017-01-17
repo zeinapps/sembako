@@ -15,23 +15,21 @@
                             <h2 class="title text-center">Informasi Akun</h2>
                             {!! Form::open(['url' => 'ubahpwd', 'method' => 'POST']) !!}
                             {{ Form::token() }}
-                            <div class="form-group col-md-6">
-                                <label class="control-label">Nama</label>
-                                <input type="password" name="password" class="form-control" required="required" placeholder="Nama" value="{{ isset(Auth::user()->name) ? Auth::user()->name : old('nama') }}">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label class="control-label">HP/WA</label>
-                                <input type="text" name="hp" class="form-control" required="required" placeholder="HP" value="{{ isset(Auth::user()->hp) ? Auth::user()->hp : old('hp') }}">
-                            </div>
                             <div class="form-group col-md-12">
-                                <label class="control-label">Alamat</label>
-                                <input type="text" name="alamat" class="form-control" required="required" placeholder="Subject" value="{{ isset(Auth::user()->alamat) ? Auth::user()->alamat : old('alamat') }}">
+                                <label class="control-label">Password Lama</label>
+                                <input type="password" name="passwordlama" class="form-control" required="required" placeholder="Password Lama" value="">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label">Password Baru</label>
+                                <input type="password" name="password" class="form-control" required="required" placeholder="Password Baru" value="">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label">Ketik Ulang Password Baru</label>
+                                <input type="password" name="password_confirmation" class="form-control" required="required" placeholder="Password Baru" value="">
                             </div>
                             
-                            <button type="submit" class="btn btn-default check_out" href="{{ url('/akunubah') }}">Ubah</button>
+                            <button type="submit" class="btn btn-default check_out" href="{{ url('/ubahpwd') }}">Ubah</button>
                             {!! Form::close() !!}
-
-                            <a class="btn btn-default check_out" href="{{ url('/akunubahpwd') }}">Ubah Password</a>
 
                         </div>
                     </div>

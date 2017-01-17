@@ -2579,3 +2579,14 @@ h2.title {
 .logo{
 	font-size: 23px;
 }
+
+#message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+#inner-message {
+    margin: 0 auto;
+}

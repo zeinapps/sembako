@@ -58,16 +58,6 @@ class LoginController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
-
-//        $user = User::where('hp',$request->hp)
-//                ->where('password',$request->password)
-//                ->first();
-//        
-//        if (!$user) {
-//            return redirect(url()->previous())
-//                        ->withErrors(['Hp dan Password tidak sesuai','Jika Anda butuh bantuan hubungi customer service'])
-//                        ->withInput();
-//        }
         
         
         $login = $this->guard()->attempt(
