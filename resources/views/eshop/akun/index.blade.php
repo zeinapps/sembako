@@ -9,7 +9,7 @@
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">{{ $title }}</h2>
                     @foreach ($data as $v)
-                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    <div  class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
@@ -17,10 +17,13 @@
                                         <img src="{{ Config::get("app.image_url_produk")."/250/".$v->gambar }}" alt="" />
                                     </a>
                                     <h2>IDR {{ $v->hargaonline }}</h2>
-                                    <h3><strong>{{ $v->nama }}</strong></h3>
+                                    <h4><strong>{{ $v->nama }}</strong></h4>
                                     <p>{{ $v->kategori }}</p>
-                                    <a href="{{ url("/produk/".$v->id) }}" class="btn btn-info add-to-cart"><i class="fa fa-eye"></i>Lihat</a>
-                                    <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$v->id}}','{{$v->nama}}','{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}','{{$v->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
+                                    <a href="{{ url("/produk/".$v->id) }}" class="btn btn-info btn-xs "><i class="fa fa-eye"></i> Lihat</a>
+                                    
+                                    <a id="link_suka_{{$v->id}}" href="javascript: void(0)" onclick="tidaksuka({{$v->id}})" class="btn btn-success btn-xs "><i class="fa fa-star"></i> Suka</a>
+                                    
+                                    <button style="margin-top: 10px;" data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$v->id}}','{{$v->nama}}','{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}','{{$v->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
                                 </div>
                                 
                             </div>

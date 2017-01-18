@@ -119,7 +119,7 @@ class AkunController extends Controller
         }else{
             return response()->json([
                 'status' => false,
-                'message' => []
+                'message' => ['Maaf, Gagal mencatat kesukaan Anda']
             ]);
         }
         
@@ -137,7 +137,7 @@ class AkunController extends Controller
         
         return response()->json([
                 'status' => true,
-                'message' => []
+                'message' => ['Terima kasih telah menyukai produk kami, Silahkan melihat pada daftar kesukaan']
             ]);
     }
     
@@ -149,7 +149,7 @@ class AkunController extends Controller
         }else{
             return response()->json([
                 'status' => false,
-                'message' => []
+                'message' => ['Maaf, Gagal menghapus kesukaan Anda']
             ]);
         }
         
@@ -162,7 +162,7 @@ class AkunController extends Controller
         $query->delete();
         return response()->json([
                 'status' => true,
-                'message' => []
+                'message' => ['Terima kasih, anda telah pernah menyukai produk kami.']
             ]);
     }
     

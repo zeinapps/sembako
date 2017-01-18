@@ -9,30 +9,84 @@ function fadeAlert() {
 
 function suka(id) {
     
-    var data = [{barang_id: id}];
-    $.ajax({
-        url: "/api/suka?api_token=" + api_token, // Specify url to submit
-        type: 'post',
-        data: {data: data}, // Specify post data
-        dataType: 'json',
-        async: true,
-        success: function (json) {
-            $("#message").css("display", "block")
-            $("#message").css("opacity", "1")
-            if (json.status) {
+    if(api_token === false){
+        $('#modallogin').modal({
+            show: 'false'
+        }); 
+    }else{
+        var data = [{barang_id: id}];
+        $.ajax({
+            url: "/api/suka?api_token=" + api_token, // Specify url to submit
+            type: 'post',
+            data: {data: data}, // Specify post data
+            dataType: 'json',
+            async: true,
+            success: function (json) {
+                $("#message").css("display", "block")
+                $("#message").css("opacity", "1")
+                if (json.status) {
 
-                $('#inner-message').removeClass('alert-success');
-                $('#inner-message').removeClass('alert-danger');
-                $('#inner-message').addClass('alert-success');
-                $('#inner-message').text('Like Sukses');
-            } else {
-                $('#inner-message').removeClass('alert-success');
-                $('#inner-message').removeClass('alert-danger');
-                $('#inner-message').addClass('Like Gagal');
+                    $('#inner-message').removeClass('alert-success');
+                    $('#inner-message').removeClass('alert-danger');
+                    $('#inner-message').addClass('alert-success');
+                    $('#inner-message').text(json.message[0]);
+                    $('#link_suka_'+id).removeClass('btn-warning');
+                    $('#link_suka_'+id).removeAttr("href").css("cursor","pointer");
+                    $('#link_suka_'+id).removeAttr("onclick");
+                    $('#link_suka_'+id).attr('onclick', 'tidaksuka('+id+')');
+                    $('#link_suka_'+id).addClass('btn-success');
+                    $('#link_suka_'+id).text(' Suka');
+                    
+                } else {
+                    $('#inner-message').removeClass('alert-success');
+                    $('#inner-message').removeClass('alert-danger');
+                    $('#inner-message').addClass(json.message[0]);
+                }
+                fadeAlert();
             }
-            fadeAlert();
-        }
-    });
+        });
+        
+    }
+}
+
+function tidaksuka(id) {
+    
+    if(api_token === false){
+        $('#modallogin').modal({
+            show: 'false'
+        }); 
+    }else{
+        var data = [{barang_id: id}];
+        $.ajax({
+            url: "/api/tidaksuka?api_token=" + api_token, // Specify url to submit
+            type: 'post',
+            data: {data: data}, // Specify post data
+            dataType: 'json',
+            async: true,
+            success: function (json) {
+                $("#message").css("display", "block")
+                $("#message").css("opacity", "1")
+                if (json.status) {
+
+                    $('#inner-message').removeClass('alert-success');
+                    $('#inner-message').removeClass('alert-danger');
+                    $('#inner-message').addClass('alert-success');
+                    $('#inner-message').text(json.message[0]);
+                    $('#link_suka_'+id).removeClass('btn-success');
+                    $('#link_suka_'+id).addClass('btn-warning');
+                    $('#link_suka_'+id).attr('onclick', 'suka('+id+')');
+                    $('#link_suka_'+id).text('Suka?');
+                    
+                } else {
+                    $('#inner-message').removeClass('alert-success');
+                    $('#inner-message').removeClass('alert-danger');
+                    $('#inner-message').addClass(json.message[0]);
+                }
+                fadeAlert();
+            }
+        });
+        
+    }
 }
 
 

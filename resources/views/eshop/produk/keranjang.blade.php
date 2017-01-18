@@ -32,7 +32,7 @@
         <div class="row">  	
             <div class="col-sm-12">
                 <div class="contact-form">
-                    <h2 class="title text-center">Data Pengiriman</h2>
+                    <h2 class="title text-center">Data Penerima</h2>
                     <div class="form-group col-md-6">
                         <label class="control-label">Nama</label>
                         <input type="text" name="nama" class="form-control" required="required" placeholder="Nama" value="{{ isset(Auth::user()->name) ? Auth::user()->name : old('nama') }}">

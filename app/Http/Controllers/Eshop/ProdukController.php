@@ -20,6 +20,11 @@ use Storage;
 class ProdukController extends Controller
 {
     public function index(Request $request){
+        if($user = $request->user()){
+            $userid = $user->id;
+        }else{
+            $userid = 0;
+        }
         $paginasi = config('app.paginasi_pencarian_produk');
         if(!$request->page){
             $rownum = 0;
@@ -30,7 +35,8 @@ class ProdukController extends Controller
         DB::statement(DB::raw("set @rownum=$rownum"));
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
                 ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
-                        'hargaonline','kategori_barang.nama as kategori','gambar')
+                        'hargaonline','kategori_barang.nama as kategori','gambar',
+                        DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                 ->orderBy('id','desc');
         if($request->s){
             $querys = $querys->where('barang.nama' ,'like' , "%$request->s%");
@@ -45,6 +51,11 @@ class ProdukController extends Controller
     }
     
     public function kategori(Request $request, $id){
+        if($user = $request->user()){
+            $userid = $user->id;
+        }else{
+            $userid = 0;
+        }
         $paginasi = config('app.paginasi_produk');
         if(!$request->page){
             $rownum = 0;
@@ -55,7 +66,8 @@ class ProdukController extends Controller
         DB::statement(DB::raw("set @rownum=$rownum"));
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
                 ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
-                        'hargaonline','kategori_barang.nama as kategori','gambar')
+                        'hargaonline','kategori_barang.nama as kategori','gambar',
+                        DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                 ->where('kategori_id',$id)
                 ->orderBy('id','desc');
         if($request->s){
@@ -73,10 +85,16 @@ class ProdukController extends Controller
         return view('eshop/produk/index', ['data' => $querys, 's' => $s, 'title' => $title]);
     }
     
-    public function show($id){
+    public function show(Request $request,$id){
+        if($user = $request->user()){
+            $userid = $user->id;
+        }else{
+            $userid = 0;
+        }
         $query = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
                 ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
-                        'hargaonline','kategori_barang.nama as kategori','gambar','barcode','kategori_id')
+                        'hargaonline','kategori_barang.nama as kategori','gambar','barcode','kategori_id',
+                        DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                 ->where('barang.id' ,$id)->first();
         
         $rekomended = Barang::whereNotIn('id',[$query->id])

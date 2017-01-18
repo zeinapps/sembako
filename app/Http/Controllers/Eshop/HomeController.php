@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Barang;
 
+
 class HomeController extends Controller
 {
     
@@ -15,12 +16,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($user = $request->user()){
+            $userid = $user->id;
+        }else{
+            $userid = 0;
+        }
         $paginasi = config('app.paginasi_produk');
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
                 ->select('barang.id as id','barang.nama as nama','harga',
-                        'hargaonline','kategori_barang.nama as kategori','gambar')
+                        'hargaonline','kategori_barang.nama as kategori','gambar',
+                        DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                 ->orderBy(DB::raw('RAND()'))
                 ->take($paginasi)->get();
         
