@@ -63,6 +63,7 @@ class HomeController extends Controller
             'rekomended1' => $rekomended1,
             'rekomended2' => $rekomended2,
             'data' => $querys,
+            'title' => 'Produk Pilihan'
         ];
         
         return view('eshop/index', $data);

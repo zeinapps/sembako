@@ -90,12 +90,6 @@ function tidaksuka(id) {
 }
 
 
-$("button").click(function () {
-    $.get("/api", function (data, status) {
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-});
-
 
 if (window.location.pathname === '/keranjang') {
     setKeranjang();
