@@ -22,6 +22,8 @@
                         <input type="password" placeholder="Password" name="password" required/>
                         <label>Ketik Ulang Password:</label>
                         <input type="password"  name="password_confirmation" placeholder="Ketik Ulang Password" required />
+                        <label>Ketik Kode ini: {!! captcha_img() !!}</label>
+                        <input type="text" name="captcha"><br>
                         <button type="submit" class="btn btn-default">Daftar</button>
                     </form>
                 </div><!--/sign up form-->

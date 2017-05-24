@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/github/sembako/routes/api.php</file>
-            <file>file:/D:/github/sembako/resources/views/eshop/carapembelian.blade.php</file>
-            <file>file:/D:/github/sembako/app/Http/Controllers/Eshop/PenjualanController.php</file>
-            <file>file:/D:/github/sembako/app/Http/Controllers/Eshop/ProdukController.php</file>
-            <file>file:/D:/github/sembako/routes/web.php</file>
-            <file>file:/D:/github/sembako/resources/views/eshop/master.blade.php</file>
-            <file>file:/D:/github/sembako/resources/views/eshop/partial/rekomendasi.blade.php</file>
-            <file>file:/D:/github/sembako/resources/views/eshop/akun/index.blade.php</file>
-            <file>file:/D:/github/sembako/resources/views/eshop/index.blade.php</file>
-            <file>file:/D:/github/sembako/resources/views/eshop/kontak.blade.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -29,7 +29,7 @@ class BarangController extends Controller
         $s = null;
         DB::statement(DB::raw("set @rownum=$rownum"));
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
-                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','hpp','harga',
+                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.display as display','barang.id as id','barang.nama as nama','hpp','harga',
                         'hargaonline','kategori_barang.nama as kategori','gambar')
                 ->orderBy('id','desc');
         if($request->s){
@@ -47,8 +47,14 @@ class BarangController extends Controller
             $i = $value->id;
             $kategori[$i] = $value->nama;
         }
+        $display = [0,1];
+         $selected_display = null;
         $selected_kategori = null;
-        return view('default/barang/form', ['kategori' => $kategori, 'selected_kategori' => $selected_kategori ]);
+        return view('default/barang/form', [
+            'selected_display' => $selected_display ,
+            'display' => $display,
+            'kategori' => $kategori, 
+            'selected_kategori' => $selected_kategori ]);
     }
     
     public function edit($id){
@@ -59,10 +65,17 @@ class BarangController extends Controller
             $kategori[$i] = $value->nama;
         }
         $selected_kategori = null;
-        
+        $selected_display = null;
+        $display = [0,1];
         $query = Barang::find($id)->toArray();
         $selected_kategori = $query['kategori_id'];
-        return view('default/barang/form', array_merge($query,['kategori' => $kategori, 'selected_kategori' => $selected_kategori ]));
+        $selected_display = $query['display'];
+        return view('default/barang/form', array_merge($query,[
+            'kategori' => $kategori, 
+            'selected_kategori' => $selected_kategori, 
+            'selected_display' => $selected_display ,
+            'display' => $display
+                ]));
 //        return view('default/barang/form', array_merge($query, ['parent' => $parent,'selected_parent'=>$selected_parent]));
     }
     
@@ -98,6 +111,7 @@ class BarangController extends Controller
                 'hargaonline' => $request->hargaonline,
                 'barcode' => $request->barcode,
                 'keterangan' => $request->keterangan,
+                'display' => $request->display,
             ];
         
         if(!$request->id){

@@ -23,6 +23,7 @@
                         <th>Gambar</th>
                         <th>Nama</th>
                         <th>Kategori</th>
+                        <th>Display</th>
                         <th>HPP</th>
                         <th>Harga</th>
                         <th>Harga Online</th>
@@ -43,6 +44,9 @@
                         </td>
                         <td>
                             {{ $v->kategori }}
+                        </td>
+                        <td>
+                            {{ $v->display }}
                         </td>
                         <td>
                             {{ $v->hpp }}

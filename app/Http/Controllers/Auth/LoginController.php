@@ -50,7 +50,8 @@ class LoginController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'hp' => 'required|numeric',
-            'password' => 'required'
+            'password' => 'required',
+            'captcha' => 'required|captcha'
         ]);
         
         if ($validator->fails()) {

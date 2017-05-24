@@ -28,10 +28,11 @@ class HomeController extends Controller
                 ->select('barang.id as id','barang.nama as nama','harga',
                         'hargaonline','kategori_barang.nama as kategori','gambar',
                         DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
+                ->where('barang.display','1')
                 ->orderBy(DB::raw('RAND()'))
                 ->take($paginasi)->get();
         
-        $rekomended = Barang::orderBy(DB::raw('RAND()'))
+        $rekomended = Barang::where('barang.display','1')->orderBy(DB::raw('RAND()'))
 		->take(6)->get();
         
         $rekomended1 = [];

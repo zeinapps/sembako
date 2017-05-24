@@ -8,10 +8,9 @@
             <div class="col-sm-9 row">
                 <h2 class="title text-center">Kontak Kami</h2>
                 <address>
-                    <p>Toko Online.</p>
-                    <p>Alamat: KPV Malang</p>
-                    <p>HP/WA: +6289876123</p>
-                    <p>Email: info@E-Shop.com</p>
+                    <p>LAPAK Online.</p>
+                    <p>Alamat: Perum Karangploso View GG7, Malang</p>
+                    <p>HP/WA: {{Config::get('app.no_wa')}}</p>
                 </address>
             </div>
             @include('eshop.sidebar')

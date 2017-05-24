@@ -15,6 +15,8 @@
                         <input type="text" placeholder="HP contoh: 08677777" name="hp" />
                         <label>Password:</label>
                         <input type="password" placeholder="Password" name="password"/>
+                        <label>Ketik Kode ini: {!! captcha_img() !!}</label>
+                        <input type="text" name="captcha"><br>
                         <button type="submit" class="btn btn-default">Masuk</button>
                         <input type="hidden" name="callback" value="{{ $callback }}" />
                         <h4 class="">Jika belum punya akun, silahkan <a href="/register?callback={{ $callback }}">mendaftar.</a></h4>

@@ -2592,3 +2592,11 @@ h2.title {
 #inner-message {
     margin: 0 auto;
 }
+
+#keranjang_bottom {
+    position: fixed;
+    bottom:0;
+    left: 0;
+    /*width: 25%;*/
+    z-index: 1000;
+}

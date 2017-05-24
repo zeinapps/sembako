@@ -97,8 +97,12 @@ if (window.location.pathname === '/keranjang') {
 
 var jkrj = getCookieKeranjang();
 var arkj = jQuery.parseJSON(jkrj);
-$("#jumlah_item_keranjang").text(arkj.length);
+setJumlahKeranjang(arkj.length);
 
+function setJumlahKeranjang(jumlah) {
+    $("#jumlah_item_keranjang").text(jumlah);
+    $("#jumlah_item_keranjang_bottom").text(jumlah);
+}
 
 function getCookieKeranjang() {
     var cokie = $.cookie('keranjang') ? $.cookie('keranjang') : '[]';
@@ -112,7 +116,7 @@ function setCookieKeranjang(array) {
 function setKeranjang() {
     var jkeranjang = getCookieKeranjang();
     var arkeranjang = jQuery.parseJSON(jkeranjang);
-    $("#jumlah_item_keranjang").text(arkeranjang.length);
+    setJumlahKeranjang(arkeranjang.length);
     for (var i in arkeranjang) {
 
         var row = "<tr id='item_prod_" + arkeranjang[i].id + "'>\n\
@@ -176,7 +180,9 @@ $("#modal_tambahkan").click(function () {
         var new_item = {"id": id_produk, "jumlah": jumlah_produk, "harga": harga, "nama": nama, "image": image};
         array_keranjang.push(new_item);
     }
-    $("#jumlah_item_keranjang").text(array_keranjang.length);
+    
+    setJumlahKeranjang(array_keranjang.length);
+    
     setCookieKeranjang(array_keranjang);
     $('#myModal').modal('hide');
 });
@@ -194,7 +200,7 @@ function delete_produk(id) {
             xx++;
         }
     }
-    $("#jumlah_item_keranjang").text(new_ar_kerj.length);
+    setJumlahKeranjang(new_ar_kerj.length);
     setCookieKeranjang(new_ar_kerj);
     hitungtotal();
 }
@@ -212,7 +218,7 @@ function hitungtotal() {
     }
 
 
-    var ongkir = 5000;
+    var ongkir = 0;
     var Total_Biaya = total + ongkir;
     $("#id_subtotal").remove();
     var str_subtotal = "<tr id='id_subtotal'>";

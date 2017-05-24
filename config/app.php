@@ -18,6 +18,8 @@ return [
     */
 
     'name' => 'Admin Rumah',
+    'no_wa' => env('NO_WA', '0896-9744-8101'),
+    'nama_toko' => env('NAMA_TOKO', 'LAPAK KARLOS'),
 
     /*
     |--------------------------------------------------------------------------
@@ -167,7 +169,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        
+        Mews\Captcha\CaptchaServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -199,7 +201,7 @@ return [
     */
 
     'aliases' => [
-
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

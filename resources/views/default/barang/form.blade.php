@@ -23,6 +23,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="display" class="col-md-4 control-label">Display</label>
+                <div class="col-md-6">
+                    {{ Form::select('display', $display, $selected_display, ['class'=> 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="kategori" class="col-md-4 control-label">Kategori</label>
                 <div class="col-md-6">
                     {{ Form::select('kategori_id', $kategori, $selected_kategori, ['class'=> 'form-control']) }}

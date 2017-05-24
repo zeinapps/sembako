@@ -83,7 +83,8 @@ class RegisterController extends Controller
             'name' => 'required',
             'alamat' => 'required',
             'hp' => 'required|numeric',
-            'password' => 'required|confirmed|min:6'
+            'password' => 'required|confirmed|min:6',
+            'captcha' => 'required|captcha'
         ]);
         
         if ($validator->fails()) {

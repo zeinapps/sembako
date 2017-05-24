@@ -38,9 +38,18 @@ class ProdukController extends Controller
                         'hargaonline','kategori_barang.nama as kategori','gambar',
                         DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                 ->orderBy('id','desc');
+        $querys = $querys->where('barang.display','=','1');
         if($request->s){
-            $querys = $querys->where('barang.nama' ,'like' , "%$request->s%");
-            $querys = $querys->orWhere('kategori_barang.nama' ,'like' , "%$request->s%");
+            $querys = $querys->where(function ($query) use ($request) {
+                $query = $query->where('barang.nama' ,'like' , "%$request->s%");
+                $arr_s = explode(" ", $request->s);
+                foreach ($arr_s as $value) {
+                    $query = $query->orWhere('barang.nama' ,'like' , "%$value%");
+                    $query = $query->orWhere('kategori_barang.nama' ,'like' , "%$value%");
+                }
+                    return $query;
+                });
+            
             $s = $request->s;
             $title = 'Hasil Pencarian "'.$request->s.'"';
         }else{
@@ -70,11 +79,12 @@ class ProdukController extends Controller
                         DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                 ->where('kategori_id',$id)
                 ->orderBy('id','desc');
-        if($request->s){
-            $querys = $querys->where('barang.nama' ,'like' , "%$request->s%");
-            $querys = $querys->orWhere('kategori_barang.nama' ,'like' , "%$request->s%");
-            $s = $request->s;
-        }
+//        if($request->s){
+//            $querys = $querys->where('barang.nama' ,'like' , "%$request->s%");
+//            $querys = $querys->orWhere('kategori_barang.nama' ,'like' , "%$request->s%");
+//            $s = $request->s;
+//        }
+        $querys = $querys->where('barang.display','1');
         $querys = $querys->paginate($paginasi);
         if(isset($querys[0]->kategori)){
             $title = 'Kategori '.$querys[0]->kategori;
@@ -95,8 +105,11 @@ class ProdukController extends Controller
                 ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
                         'hargaonline','kategori_barang.nama as kategori','gambar','barcode','kategori_id',
                         DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
-                ->where('barang.id' ,$id)->first();
-        
+                ->where('barang.id' ,$id)
+                ->where('barang.display' ,'1')->first();
+        if(!$query){
+            abort(404);
+        }
         $rekomended = Barang::whereNotIn('id',[$query->id])
 //		->where('kategori_id',$query->kategori_id)
 		->orderBy(DB::raw('RAND()'))
