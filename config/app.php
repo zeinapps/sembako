@@ -20,7 +20,12 @@ return [
     'name' => 'Admin Rumah',
     'no_wa' => env('NO_WA', '0896-9744-8101'),
     'nama_toko' => env('NAMA_TOKO', 'LAPAK KARLOS'),
-
+    'status_penjualan' => [
+        1 => 'Persiapan',
+        2 => 'Pengiriman',
+        3 => 'Terkirim',
+        99 => 'Tidak Terkirim',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -71,7 +76,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------

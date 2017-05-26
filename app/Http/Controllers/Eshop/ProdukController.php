@@ -57,7 +57,7 @@ class ProdukController extends Controller
         }
         $querys = $querys->paginate($paginasi);
         return view('eshop/produk/index', ['data' => $querys, 's' => $s, 'title' => $title]);
-    }
+        }
     
     public function kategori(Request $request, $id){
         if($user = $request->user()){
@@ -93,7 +93,7 @@ class ProdukController extends Controller
         }
         
         return view('eshop/produk/index', ['data' => $querys, 's' => $s, 'title' => $title]);
-    }
+        }
     
     public function show(Request $request,$id){
         if($user = $request->user()){
@@ -126,13 +126,12 @@ class ProdukController extends Controller
                 $rekomended2[] = $reko;
             }
         }
-//        dd($rekomended);
                 $data = [
                     'rekomended1' => $rekomended1,
                     'rekomended2' => $rekomended2,
                     'produk' => $query,
                 ];
-        
+                
         return view('eshop/produk/show', $data );
     }
     

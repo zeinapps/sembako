@@ -66,7 +66,7 @@
                                     <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
                                     <li><a href="/register"><i class="fa fa-user"></i> Daftar</a></li>
                                     @else
-                                    <li><a href="/kesukaan"><i class="fa fa-star"></i> Kesukaan <span class="label label-danger" id="jumlah_item_keranjang">0</span></a></li>
+                                    <li><a href="/kesukaan"><i class="fa fa-star"></i> Kesukaan <span class="label label-danger" id="jumlah_item_kesukaan">{{Auth::check()?Auth::user()->kesukaan : 0}}</span></a></li>
                                     <li><a href="/transaksi"><i class="fa fa-table"></i> Transaksi</a></li>
                                     <li><a href="/akun"><i class="fa fa-user"></i> Akun</a></li>
                                     <li><a href="{{ url('/logout') }}"
@@ -149,7 +149,7 @@
         <div id="keranjang_bottom" class="alert alert-success" style="padding: 5px; margin-bottom: 0px;">
             <a style="margin-right: 5px;" href="/keranjang"><i class="fa fa-shopping-cart"></i> <span class="label label-danger" id="jumlah_item_keranjang_bottom">0</span></a>
             @if(!Auth::guest())
-            <a href="/kesukaan"><i class="fa fa-star"></i> <span class="label label-danger" id="jumlah_item_keranjang_bottom">0</span></a>
+            <a href="/kesukaan"><i class="fa fa-star"></i> <span class="label label-danger" id="jumlah_item_keranjang_bottom">{{Auth::check()?Auth::user()->kesukaan : 0}}</span></a>
             @endif
         </div>
 

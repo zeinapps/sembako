@@ -134,7 +134,8 @@ function setKeranjang() {
                                 <div class='cart_quantity_button'>\n\
                                     <a onClick='plus_keranjang(" + arkeranjang[i].id + ")' class='cart_quantity_up' href='javascript: void(0)'> + </a>\n\
                                     <input type='hidden' value='" + arkeranjang[i].id + "' name='id[]' />\n\
-                                    <input id='jum_id_" + arkeranjang[i].id + "' class='cart_quantity_input' type='text' name='jumlah[]' value='" + arkeranjang[i].jumlah + "' autocomplete='off' size='2'>\n\
+                                <input type='hidden' value='" + arkeranjang[i].harga + "' name='harga_satuan[]' />\n\
+                                 <input id='jum_id_" + arkeranjang[i].id + "' class='cart_quantity_input' type='text' name='jumlah[]' value='" + arkeranjang[i].jumlah + "' autocomplete='off' size='2'>\n\
                                     <a onClick='min_keranjang(" + arkeranjang[i].id + ")' class='cart_quantity_down' href='javascript: void(0)'> - </a>\n\
                                 </div>\n\
                             </td>\n\
@@ -226,13 +227,13 @@ function hitungtotal() {
     str_subtotal += "<td colspan='2'>";
     str_subtotal += "<table class='table table-condensed total-result'>";
     str_subtotal += "<tr>";
-    str_subtotal += "<td>Sub Total</td>";
-    str_subtotal += "<td>" + total + "</td>";
-    str_subtotal += "</tr>";
-    str_subtotal += "<tr class='shipping-cost'>";
-    str_subtotal += "<td>Ongkos kirim</td>";
-    str_subtotal += "<td>" + ongkir + "</td>";
-    str_subtotal += "</tr>";
+//    str_subtotal += "<td>Sub Total</td>";
+//    str_subtotal += "<td>" + total + "</td>";
+//    str_subtotal += "</tr>";
+//    str_subtotal += "<tr class='shipping-cost'>";
+//    str_subtotal += "<td>Ongkos kirim</td>";
+//    str_subtotal += "<td>" + ongkir + "</td>";
+//    str_subtotal += "</tr>";
     str_subtotal += "<tr>";
     str_subtotal += "<td>Total</td>";
     str_subtotal += "<td><span>" + Total_Biaya + "</span></td>";

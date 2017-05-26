@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Kesukaan;
 use App\Barang;
-use App\Penjualan;
-use App\Penjualan_detil;
 use Validator;
 use Auth;
 use DB;
@@ -29,11 +27,13 @@ class AkunController extends Controller
             $rownum = ($request->page - 1) * $paginasi;
         }
         $s = null;
+       $userid = Auth::user()->id;
         DB::statement(DB::raw("set @rownum=$rownum"));
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
                 ->join('kesukaan', 'kesukaan.barang_id', '=', 'barang.id')
                 ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
-                        'hargaonline','kategori_barang.nama as kategori','gambar')
+                        'hargaonline','kategori_barang.nama as kategori','gambar',
+                        DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                 ->where('kesukaan.user_id',Auth::user()->id)
                 ->orderBy('id','desc');
         if($request->s){
@@ -45,7 +45,7 @@ class AkunController extends Controller
             $title = 'Kesukaan Saya';
         }
         $querys = $querys->paginate($paginasi);
-        return view('eshop/akun/index', ['data' => $querys, 's' => $s, 'title' => $title]);
+        return view('eshop/akun/kesukaan', ['data' => $querys, 's' => $s, 'title' => $title,]);
     }
   
     public function show(){
@@ -135,6 +135,8 @@ class AkunController extends Controller
             ]);
         }
         
+        User::where('id',$user->id)
+                    ->update(['kesukaan'=>Kesukaan::where('user_id', $user->id)->count()]);
         return response()->json([
                 'status' => true,
                 'message' => ['Terima kasih telah menyukai produk kami, Silahkan melihat pada daftar kesukaan']
@@ -160,6 +162,8 @@ class AkunController extends Controller
                 ->first();
         
         $query->delete();
+        User::where('id',$user->id)
+                    ->update(['kesukaan'=>Kesukaan::where('user_id', $user->id)->count()]);
         return response()->json([
                 'status' => true,
                 'message' => ['Terima kasih, anda telah pernah menyukai produk kami.']

@@ -92,7 +92,11 @@ class RegisterController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
-        
+        if(User::where('hp',$request->hp)){
+            return redirect(url()->previous())
+                        ->withErrors('No WA yang Anda masukkan sudah pernah di daftarkan')
+                        ->withInput();
+        }
         $user = User::create([
             'name' => $request->name,
             'hp' => $request->hp,

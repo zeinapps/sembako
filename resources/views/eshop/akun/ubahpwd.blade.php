@@ -6,6 +6,11 @@
         <div class="row">
 
             <div class="col-sm-9 padding-right">
+                <ol class="breadcrumb">
+                    <li><a href="/">Beranda</a></li>
+                    <li><a href="/akun">Akun</a></li>
+                    <li class="active">Ubah Password</li>
+                </ol>
                 @include('default.notifikasi.error')
                 @include('default.notifikasi.success')
 

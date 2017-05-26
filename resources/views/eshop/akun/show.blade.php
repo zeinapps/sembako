@@ -6,6 +6,10 @@
         <div class="row">
 
             <div class="col-sm-9 padding-right">
+                <ol class="breadcrumb">
+                <li><a href="/">Beranda</a></li>
+                <li class="active">Akun</li>
+            </ol>
                 @include('default.notifikasi.error')
                 @include('default.notifikasi.success')
 
@@ -30,8 +34,8 @@
                             
                             <button type="submit" class="btn btn-default check_out" href="{{ url('/akunubah') }}">Ubah</button>
                             {!! Form::close() !!}
-
-                            <a class="btn btn-default check_out" href="{{ url('/akunubahpwd') }}">Ubah Password</a>
+                            <hr>Ubahlah Password Anda secara berkala. klik 
+                            <a class="btn btn-warning" href="{{ url('/akunubahpwd') }}">Ubah Password</a>
 
                         </div>
                     </div>
