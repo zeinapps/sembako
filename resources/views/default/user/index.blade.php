@@ -5,7 +5,7 @@
         <div class="panel-heading">Dashboard</div>
 
         <div class="panel-body">
-            <h2>Barang</h2>
+            <h2>User</h2>
             @include('default.notifikasi.error')
             @include('default.notifikasi.success')
             <a href="{{ url('/formuser') }}" class="btn btn-info" role="button" style="float: left;margin-right: 5px;">Data Baru</a>

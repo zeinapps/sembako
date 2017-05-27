@@ -8,7 +8,9 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <a class="btn btn-info" href="{{ url('/user') }}">User</a>
+                            <a class="btn btn-info" href="{{ url('/kategoribarang') }}">Kategori</a>
+                            <a class="btn btn-info" href="{{ url('/barang') }}">Barang</a>
                 </div>
             </div>
         </div>
