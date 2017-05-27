@@ -18,7 +18,7 @@ return [
     */
 
     'name' => 'Admin Rumah',
-    'no_wa' => env('NO_WA', '0896-9744-8101'),
+    'no_wa' => env('NO_WA'),
     'nama_toko' => env('NAMA_TOKO', 'LAPAK KARLOS'),
     'status_penjualan' => [
         1 => 'Persiapan',
