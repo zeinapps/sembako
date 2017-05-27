@@ -55,7 +55,7 @@ echo json_encode([
                             @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             @else
-
+                            <li><a href="{{ url('/user') }}">User</a></li>
                             <li><a href="{{ url('/kategoribarang') }}">Kategori</a></li>
                             <li><a href="{{ url('/barang') }}">Barang</a></li>
                             <li class="dropdown">

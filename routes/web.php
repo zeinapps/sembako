@@ -38,6 +38,14 @@ Route::group(['middleware' => ['auth','isadmin']], function () {
     Route::post('/barang', 'BarangController@store');
     Route::get('/formbarang/{id}', 'BarangController@edit');
     Route::post('/barang/{id}', 'BarangController@destroy');
+    
+    Route::get('/user', 'UserController@index');
+    Route::post('/user', 'UserController@store');
+    Route::get('/formuser', 'UserController@add');
+    Route::get('/formuser/{id}', 'UserController@edit');
+    Route::post('/user/{id}', 'UserController@destroy');
+    Route::post('/reset', 'UserController@reset');
+    Route::get('/formreset/{id}', 'UserController@resetform');
 });
 
 Route::group(['middleware' => ['auth']], function () {
