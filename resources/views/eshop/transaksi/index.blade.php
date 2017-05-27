@@ -41,7 +41,7 @@
                                             {{ $v->alamat }}
                                         </td>
                                         <td>
-                                            {{ $v->status }}
+                                            {!! $v->status !!}
                                         </td>
                                         <td>
                                             <a class="btn  btn-info btn-xs" href="{{ url('/transaksi/'.$v->id ) }}" style="float: left; margin-right: 5px;">Lihat Produk</a>

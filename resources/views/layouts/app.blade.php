@@ -38,7 +38,7 @@ echo json_encode([
                         </button>
 
                         <!-- Branding Image -->
-                        <a class="navbar-brand" href="{{ url('/') }}">
+                        <a class="navbar-brand" href="{{ url('/home') }}">
                             {{ config('app.name', 'Laravel') }}
                         </a>
                     </div>
@@ -58,6 +58,7 @@ echo json_encode([
                             <li><a href="{{ url('/user') }}">User</a></li>
                             <li><a href="{{ url('/kategoribarang') }}">Kategori</a></li>
                             <li><a href="{{ url('/barang') }}">Barang</a></li>
+                            <li><a href="{{ url('/penjualan') }}">Penjualan</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>

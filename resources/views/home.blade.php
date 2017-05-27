@@ -9,8 +9,9 @@
 
                 <div class="panel-body">
                     <a class="btn btn-info" href="{{ url('/user') }}">User</a>
-                            <a class="btn btn-info" href="{{ url('/kategoribarang') }}">Kategori</a>
-                            <a class="btn btn-info" href="{{ url('/barang') }}">Barang</a>
+                    <a class="btn btn-info" href="{{ url('/kategoribarang') }}">Kategori</a>
+                    <a class="btn btn-info" href="{{ url('/barang') }}">Barang</a>
+                    <a class="btn btn-info" href="{{ url('/penjualan') }}">Penjualan</a>
                 </div>
             </div>
         </div>

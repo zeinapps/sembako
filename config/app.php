@@ -21,10 +21,10 @@ return [
     'no_wa' => env('NO_WA'),
     'nama_toko' => env('NAMA_TOKO', 'LAPAK KARLOS'),
     'status_penjualan' => [
-        1 => 'Persiapan',
-        2 => 'Pengiriman',
-        3 => 'Terkirim',
-        99 => 'Tidak Terkirim',
+        1 => 'Baru',
+        2 => 'Proses',
+        3 => 'Diterima',
+        99 => 'Batal',
     ],
     /*
     |--------------------------------------------------------------------------

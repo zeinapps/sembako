@@ -46,6 +46,11 @@ Route::group(['middleware' => ['auth','isadmin']], function () {
     Route::post('/user/{id}', 'UserController@destroy');
     Route::post('/reset', 'UserController@reset');
     Route::get('/formreset/{id}', 'UserController@resetform');
+    
+    Route::get('/penjualan', 'PenjualanController@index');
+    Route::get('/penjualan/{id}', 'PenjualanController@show');
+    Route::post('/penjualan/{id}', 'PenjualanController@status');
+    
 });
 
 Route::group(['middleware' => ['auth']], function () {

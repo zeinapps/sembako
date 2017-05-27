@@ -8,7 +8,7 @@
                 <div class="blog-post-area">
                     <h2 class="title text-center">Cara Pembelian</h2>
                     <div class="single-blog-post">
-                        <h3>1. COD</h3>
+                        <h3>1. Kirim Pesanan Via HP/WA</h3>
 <!--                        <div class="post-meta">
                             <ul>
                                 <li><i class="fa fa-user"></i> Admin</li>
@@ -26,7 +26,7 @@
                        
                         <p>Pemesanan Produk di lapak kami bisa dilakukan dengan cara pesan langsung via WA ke nomer <strong>{{Config::get('app.no_wa')}}</strong>. Tulis barang yang Anda pesan beserta jumlahnya.</p>
                         <br>
-                        <h3>2. Via Web</h3>
+                        <h3>2. Kirim Pesanan Via Web</h3>
                         <br><p>Cara yang ke dua untuk membeli produk di lapak kami yaitu dengan memanfaatkan Web ini. Anda diwajibkan login terlebih dahulu sebelum Anda melakukan pemesanan produk. Jika Anda belum mempunyai akun silahkan mendaftar terlebih dahulu <a href="/register">disini</a>.</p>
                         <br><p>Setelah Anda login, Anda bisa memilih produk yang Anda inginkan ke dalam <a href="/keranjang"><i class="fa fa-shopping-cart"></i> Keranjang Belanja</a>. Setelah Anda selesai memilih, pastikan alamat pengiriman yang tertulis pada form sudah sesuai. Selanjutnya melakukan submit dengan menekan tombol <strong>"Kirim Pesanan"</strong></p>
                         <br><p></p>
