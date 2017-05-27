@@ -32,6 +32,8 @@ class UserController extends Controller
                 ->orderBy('id','desc');
         if($request->s){
             $querys = $querys->where('name' ,'like' , "%$request->s%");
+            $querys = $querys->orWhere('hp' ,'like' , "%$request->s%");
+            $querys = $querys->orWhere('alamat' ,'like' , "%$request->s%");
             $s = $request->s;
         }
         $querys = $querys->paginate($paginasi);

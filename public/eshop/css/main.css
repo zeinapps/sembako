@@ -2600,3 +2600,7 @@ h2.title {
     /*width: 25%;*/
     z-index: 1000;
 }
+
+img {
+    border-radius: 8px;
+}
