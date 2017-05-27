@@ -8,12 +8,11 @@
             <h2>Penjualan</h2>
             @include('default.notifikasi.error')
             @include('default.notifikasi.success')
-            <a href="{{ url('/formpenjualan') }}" class="btn btn-info" role="button" style="float: left;margin-right: 5px;">Data Baru</a>
-            <form action="{{ url('/penjualan') }}" method="GET">
-                <div class="input-group col-md-6">
-                    <input name="s" class="search-query form-control" placeholder="Kata kunci ==> Enter" type="text" value="{{ $s ? $s : '' }}">
+            
+            <form action="{{ url('/penjualan') }}" method="GET">Pilih Status
+                <div class="input-group col-md-4">
+                 {{ Form::select('status', Config::get('app.status_penjualan'), $status, ['class'=> 'form-control','onchange'=>'this.form.submit()']) }}
                 </div>
-
             </form>
             <table class="table table-condensed">
                 <thead>

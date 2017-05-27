@@ -13,11 +13,16 @@
                 </ol>
                 @include('default.notifikasi.error')
                 @include('default.notifikasi.success')
-
+                
                 <div class="row">  	
                     <div class="col-sm-12">
                         <div class="contact-form">
                             <h2 class="title text-center">{{$title}}</h2>
+                            <form action="{{ url('/transaksi') }}" method="GET">Pilih Status
+                            <div class="input-group col-md-4">
+                             {{ Form::select('status', Config::get('app.status_penjualan'), $status, ['class'=> 'form-control','onchange'=>'this.form.submit()']) }}
+                            </div>
+                        </form>
                             <table class="table table-condensed">
                                 <thead>
                                     <tr>

@@ -22,10 +22,16 @@ class PenjualanController extends Controller
         $paginasi = config('app.paginasi');
         $title = "Transaksi Saya";
         $s = "";
+        $status = null;
         $querys = Penjualan::where('user_id',Auth::user()->id)
-                ->orderBy('created_at','desc')
-                ->paginate($paginasi);
-        return view('eshop/transaksi/index', ['data' => $querys, 's' => $s, 'title' => $title]);
+                ->orderBy('created_at','desc');
+        
+        if($request->status){
+            $querys = $querys->where('status' ,$request->status);
+            $status = $request->status;
+        }
+        $querys = $querys->paginate($paginasi);
+        return view('eshop/transaksi/index', ['data' => $querys, 's' => $s, 'title' => $title,'status' => $status]);
     }
     
     public function show($id){

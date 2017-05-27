@@ -22,21 +22,17 @@ class PenjualanController extends Controller
     
     public function index(Request $request){
         $paginasi = config('app.paginasi');
-        if(!$request->page){
-            $rownum = 0;
-        }else{
-            $rownum = ($request->page - 1) * $paginasi;
-        }
-        $s = null;
-        DB::statement(DB::raw("set @rownum=$rownum"));
+       
+        $status = null;
         $querys = Penjualan::select('*')
                 ->orderBy('status','asc');
-        if($request->s){
-            $querys = $querys->where('nama' ,'like' , "%$request->s%");
-            $s = $request->s;
+        
+        if($request->status){
+            $querys = $querys->where('status' ,$request->status);
+            $status = $request->status;
         }
         $querys = $querys->paginate($paginasi);
-        return view('default/penjualan/index', ['data' => $querys, 's' => $s ]);
+        return view('default/penjualan/index', ['data' => $querys, 'status' => $status ]);
     }
     
     public function show($id){
