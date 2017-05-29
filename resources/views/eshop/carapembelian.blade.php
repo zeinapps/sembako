@@ -37,11 +37,10 @@
                        
                         <p><a href="/keranjang"><i class="fa fa-shopping-cart"></i> Keranjang </a> belanja berfungsi sebagai alat untuk menampung produk pesanan anda sementara. Dan juga sebagai alat hitung/kalkulator yang otomatis akan memberi tahu total harga produk yang telah Anda pilih.</p>
                         <br><p>Untuk saat ini pengiriman barang akan dilakukan 2 tahap yaitu pagi dan sore/malam hari. Sehingga pemesanan pada pagi sampai sore hari akan dikirim sore. Dan pemesanan sore sampai pagi akan dikirim pagi.</p>
-                        <br><p>Barang yang telah Anda pesan akan kami kirim ke tempat Anda berada sesuai petunjuk yang telah Anda berikan ke kami. Pada daerah tertentu kami mengenakan Ongkos kirim yang ditentukan bersama dengan pelanggan. Selebihnya Ongkos Kirim tidak dikenakan biaya atau <strong>GRATIS</strong>. </p> 
-                        <br><p>Atau Jika Anda membeli produk kami senilai minimal Rp50.000 atau lebih. ongkos kirim 100% <strong>GRATIS</strong></p>
+                        <br><p>Barang yang telah Anda pesan akan kami kirim ke tempat Anda berada sesuai petunjuk yang telah Anda berikan ke kami. Jika Anda membeli produk kami senilai minimal Rp25.000 atau lebih, maka ongkos kirim <strong>GRATIS</strong>. Jika kurang dari Rp25.000, maka biaya kiraim hanya Rp2.000.</p>
                         <br><p>Pembayaran dilakukan secara langsung bersamaan dengan serah terima barang pesanan Pelanggan.</p>
                         <br><p>Aturan di atas bukan haga mati, artinya secara berkala kami akan terus menyempurnakan sistem dan pelayanan kami agar pelanggan semakin terpuaskan.    </p>
-                        <br><p>Untuk saat ini, Kami hanya melayani pembelian produk oleh pelanggan yang berdomisili di kawasan Kecamatan Karang Ploso, Kabupaten Malang. Atau sekitarnya. Saran dan kritik yang membangun bisa dikirim lewat nomer WA {{Config::get('app.no_wa')}}. </p>
+                        <br><p>Untuk saat ini, Kami hanya melayani pembelian produk oleh pelanggan yang berdomisili di kawasan Kecamatan Karang Ploso, Kabupaten Malang. Khususnya Perumahan Karangploso View, Bumi Perkasa, Arjuna Gumilang, Permata Regency, GPA, dan sekitarnya. Saran dan kritik yang membangun bisa dikirim lewat nomer WA {{Config::get('app.no_wa')}}. </p>
                         <br><p>Salam Kami, {{Config::get('app.nama_toko')}}</p>
                         <br><p></p>
                     </div>

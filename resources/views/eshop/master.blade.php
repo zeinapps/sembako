@@ -151,6 +151,7 @@
             @if(!Auth::guest())
             <a href="/kesukaan"><i class="fa fa-star"></i> <span class="label label-danger" id="jumlah_item_keranjang_bottom">{{Auth::check()?Auth::user()->kesukaan : 0}}</span></a>
             @endif
+            <a style="margin-right: 5px;" href="/carapembelian"> <span class="label label-info" id="">Cara Beli</span></a>
         </div>
 
         <footer id="footer"><!--Footer-->
