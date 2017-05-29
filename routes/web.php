@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/akunubahpwd', 'Eshop\AkunController@ubahpwd');
     Route::get('/akun', 'Eshop\AkunController@show');
     Route::get('/kesukaan', 'Eshop\AkunController@kesukaan');
-    Route::get('/transaksi', 'Eshop\PenjualanController@index');
-    Route::get('/transaksi/{id}', 'Eshop\PenjualanController@show');
+    Route::get('/transaksi', 'Eshop\TransaksiController@index');
+    Route::get('/transaksi/{id}', 'Eshop\TransaksiController@show');
 });
 

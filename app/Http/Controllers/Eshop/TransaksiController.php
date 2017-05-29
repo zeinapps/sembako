@@ -16,7 +16,7 @@ use App\Penjualan_detil;
 use Validator;
 use Auth;
 
-class PenjualanController extends Controller
+class TransaksiController extends Controller
 {
     public function index(Request $request){
         $paginasi = config('app.paginasi');
@@ -40,7 +40,12 @@ class PenjualanController extends Controller
                 ->join('barang', 'barang_id', '=', 'barang.id')
                 ->select('penjualan.tanggal as tanggal','barang.nama as nama','penjualan_detil.harga_satuan as harga','penjualan_detil.jumlah as jumlah')
                 ->where('penjualan_id',$id)
+                ->where('user_id',Auth::user()->id)
                 ->paginate(config('app.paginasi'));
+        
+        if(!$querys->total()){
+            abort(404);
+        }
         $total = Penjualan_detil::where('penjualan_id',$id)->selectRaw('SUM(jumlah*harga_satuan) as total')->first();
         return view('eshop/transaksi/show', ['data' => $querys, 'title' => $title, 'total' => $total->total]);
     }
