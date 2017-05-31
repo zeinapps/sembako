@@ -52,7 +52,7 @@ class LoginController extends Controller
             'hp' => 'required|numeric',
             'password' => 'required',
             'captcha' => 'required|captcha'
-        ]);
+        ],config('app.custom_error_message'));
         
         if ($validator->fails()) {
             return redirect(url()->previous())

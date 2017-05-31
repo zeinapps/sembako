@@ -56,7 +56,7 @@ class UserController extends Controller
             'name' => 'required',
             'alamat' => 'required',
             'hp' => 'required|numeric',
-        ]);
+        ],config('app.custom_error_message'));
 
         if ($validator->fails()) {
             return redirect(url()->previous())
@@ -95,7 +95,7 @@ class UserController extends Controller
         
         $validator = Validator::make($request->all(), [
             'password' => 'required|min:6',
-        ]);
+        ],config('app.custom_error_message'));
 
         if ($validator->fails()) {
             return redirect(url()->previous())

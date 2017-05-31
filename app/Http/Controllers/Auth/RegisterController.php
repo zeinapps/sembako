@@ -85,14 +85,14 @@ class RegisterController extends Controller
             'hp' => 'required|numeric',
             'password' => 'required|confirmed|min:6',
             'captcha' => 'required|captcha'
-        ]);
+        ], config('app.custom_error_message'));
         
         if ($validator->fails()) {
             return redirect(url()->previous())
                         ->withErrors($validator)
                         ->withInput();
         }
-        if(User::where('hp',$request->hp)){
+         if(User::where('hp',$request->hp)->first()){
             return redirect(url()->previous())
                         ->withErrors('No WA yang Anda masukkan sudah pernah di daftarkan')
                         ->withInput();

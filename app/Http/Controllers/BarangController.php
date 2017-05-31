@@ -87,7 +87,7 @@ class BarangController extends Controller
             'hpp' => 'required|numeric',
             'harga' => 'required|numeric',
             'hargaonline' => 'required|numeric'
-        ]);
+        ],config('app.custom_error_message'));
         
         if ($validator->fails()) {
             return redirect(url()->previous())

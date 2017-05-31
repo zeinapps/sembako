@@ -63,7 +63,7 @@ class AkunController extends Controller
         $validator = Validator::make($request->all(), [
             'passwordlama' => 'required',
             'password' => 'required|confirmed|min:6',
-        ]);
+        ],config('app.custom_error_message'));
         
         if ($validator->fails()) {
             return redirect(url()->previous())
@@ -92,7 +92,7 @@ class AkunController extends Controller
             'nama' => 'required',
             'alamat' => 'required',
             'hp' => 'required',
-        ]);
+        ],config('app.custom_error_message'));
         
         if ($validator->fails()) {
             return redirect(url()->previous())

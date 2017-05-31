@@ -69,7 +69,7 @@ class KategoribarangController extends Controller
         
         $validator = Validator::make($request->all(), [
             'nama' => 'required|max:50'
-        ]);
+        ],config('app.custom_error_message'));
 
         if ($validator->fails()) {
             return redirect(url()->previous())

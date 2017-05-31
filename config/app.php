@@ -26,6 +26,14 @@ return [
         3 => 'Diterima',
         99 => 'Batal',
     ],
+    'custom_error_message' => [
+            'required' => ':attribute wajib diisi.',
+            'captcha' => 'Kode tidak sesuai dengan Gambar  .',
+            'confirmed' => 'Ketik Ulang :attribute tidak sama.',
+            'numeric' => ':attribute hanya boleh diisi angka saja.',
+            'min' => ':attribute minimal :min karakter.',
+            'max' => ':attribute maximal :max karakter.',
+        ],
     /*
     |--------------------------------------------------------------------------
     | Application Environment
