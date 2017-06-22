@@ -77,7 +77,7 @@
                     </span>
                     @endif
                 </div>
-            </div>
+            </div>  
             <div class="form-group">
                 <label for="keterangan" class="col-md-4 control-label">Keterangan:</label>
                 <div class="col-md-6">
@@ -85,6 +85,24 @@
                     @if ($errors->has('keterangan'))
                     <span class="help-block">
                         <strong>{{ $errors->first('keterangan') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tag" class="col-md-4 control-label">Tag:</label>
+                <div class="col-md-6">
+                    <div id="tag_span"> </div>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="tambah tag" id="input_tag">
+                        <div class="input-group-btn">
+                            <button id="tambah_tag"type="button" class="btn btn-success"><i class="fa fa-plus"></i>+</button>
+                        </div>
+                    </div>
+                    <input id="tag" name="tag" type="hidden" class="form-control" name="tag" value="{{ isset($tag) ? $tag : old('tag') }}" >
+                    @if ($errors->has('tag'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('tag') }}</strong>
                     </span>
                     @endif
                 </div>

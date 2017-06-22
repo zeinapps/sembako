@@ -40,16 +40,21 @@ class ProdukController extends Controller
                 ->orderBy('id','desc');
         $querys = $querys->where('barang.display','=','1');
         if($request->s){
-            $querys = $querys->where(function ($query) use ($request) {
-                $query = $query->where('barang.nama' ,'like' , "%$request->s%");
-                $arr_s = explode(" ", $request->s);
-                foreach ($arr_s as $value) {
-                    $query = $query->orWhere('barang.nama' ,'like' , "%$value%");
-                    $query = $query->orWhere('kategori_barang.nama' ,'like' , "%$value%");
-                }
-                    return $query;
-                });
-            
+            $idsformtag = [];
+            $q1 = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
+                    ->select('barang.id')
+                    ->where('kategori_barang.nama', 'like', "%$request->s%")
+                    ->orWhere('barang.nama', 'like', "%$request->s%");
+            $q2 = Barang::join('tag_barang', 'tag_barang.barang_id', '=', 'barang.id')
+                    ->select('barang.id')
+                    ->join('tag', 'tag_barang.tag_id', '=', 'tag.id')
+                    ->where('tag.nama', 'like', "%$request->s%")
+                    ->union($q1)
+                    ->get();
+            foreach ($q2 as $v) {
+                $idsformtag[] = $v->id;
+            }
+            $querys = $querys->whereIn('barang.id' ,$idsformtag);
             $s = $request->s;
             $title = 'Hasil Pencarian "'.$request->s.'"';
         }else{

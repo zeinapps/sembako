@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Tag;
+use App\Tag_barang;
 use App\Barang;
 use App\Kategoribarang;
 use Validator;
@@ -70,6 +72,17 @@ class BarangController extends Controller
         $query = Barang::find($id)->toArray();
         $selected_kategori = $query['kategori_id'];
         $selected_display = $query['display'];
+        
+        
+        $tag= Tag_barang::join('tag','tag_barang.tag_id','=','tag.id')
+                ->select('tag.nama')
+                ->where('barang_id',$id)->get();
+        $tags = [];
+        foreach ($tag as $value) {
+            $tags[] = $value->nama;
+        }
+        $query['tag'] = implode(',', $tags);
+        
         return view('default/barang/form', array_merge($query,[
             'kategori' => $kategori, 
             'selected_kategori' => $selected_kategori, 
@@ -83,6 +96,7 @@ class BarangController extends Controller
         
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
+            'tag' => 'required',
             'kategori_id' => 'required',
             'hpp' => 'required|numeric',
             'harga' => 'required|numeric',
@@ -114,15 +128,24 @@ class BarangController extends Controller
                 'display' => $request->display,
             ];
         
+        $barang_id = 0;
         if(!$request->id){
-            Barang::insert(array_merge($params,$urlgambar));
+            $barang_id = Barang::create(array_merge($params,$urlgambar))->id;
         }else{
             if($urlgambar['gambar'] != 'no_image.png'){
                 $params = array_merge($params,$urlgambar);
             }
             Barang::where('id',$request->id)
                     ->update($params);
+            $barang_id = $request->id;
         }
+        $tags = explode(',', substr($request->tag, 0, strlen($request->tag)-1));
+        
+        foreach ($tags as $value) {
+            $tag = Tag::updateOrCreate(['nama' => $value]);
+            Tag_barang::updateOrCreate(['barang_id' => $barang_id, 'tag_id' => $tag->id]);
+        }
+        
         return redirect('barang')->with('status', ['Sukses Tambah/Ubah Data']);
     }
     
@@ -154,6 +177,7 @@ class BarangController extends Controller
     
     public function destroy($id){
         try {
+            Tag_barang::where('barang_id', $id)->delete();
             Barang::find($id)->delete();
             return redirect('barang')->with('status', ['Sukses Hapus Data']);
         } catch (Exception $exc) {
