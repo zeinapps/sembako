@@ -2,10 +2,10 @@
 @section('content')
 <section id="cart_items">
     <div class="container">
-        <ol class="breadcrumb">
-            <li><a href="/">Beranda</a></li>
-            <li class="active">Keranjang</li>
-        </ol>
+            <ol class="breadcrumb">
+                <li><a href="/">Beranda</a></li>
+                <li class="active">Keranjang</li>
+            </ol>
         @include('default.notifikasi.error')
         @include('default.notifikasi.success')
         <h2 class="title text-center">Keranjang belanja</h2>
@@ -13,21 +13,23 @@
         
         {!! Form::open(['url' => 'penjualan', 'method' => 'POST']) !!}
         {{ Form::token() }}
-        
-        <div class="row">
-            <div class="col-sm-9 row" >
-                <div class="features_items">
-                    <div id="div_keranjang"></div>
-                </div>
-            </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Item</td>
+                        <td class="description"></td>
+                        <td class="price">Harga</td>
+                        <td class="quantity">Jumlah</td>
+                        <td class="total">subTotal</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody id="tbody_keranjang">
+
+                </tbody>
+            </table>
         </div>
-        <hr>
-        <div class="row">  	
-            <div class="col-sm-12" id="total_keranjang">
-                
-            </div>
-        </div>
-        <hr>
         <div class="row">  	
             <div class="col-sm-12">
                 <div class="contact-form">
@@ -42,7 +44,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label class="control-label">Alamat Pengiriman</label>
-                        <input type="text" name="alamat" class="form-control" required="required" placeholder="Alamat pengiriman" value="{{ isset(Auth::user()->alamat) ? Auth::user()->alamat : old('alamat') }}">
+                        <input type="text" name="alamat" class="form-control" required="required" placeholder="Subject" value="{{ isset(Auth::user()->alamat) ? Auth::user()->alamat : old('alamat') }}">
                     </div>
                     <div class="form-group col-md-12">
                         <label class="control-label">Keterangan</label>

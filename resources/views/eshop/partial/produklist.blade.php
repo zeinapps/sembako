@@ -19,7 +19,7 @@
                     @else
                     <a id="link_suka_{{$v->id}}" href="javascript: void(0)" onclick="suka({{$v->id}})" class="btn btn-warning btn-xs "><i class="fa fa-star-o"></i> Suka?</a>
                     @endif
-                    <button style="margin-top: 10px;" data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$v->id}}','{{$v->nama}}','{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}','{{$v->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
+                    <button style="margin-top: 10px;" data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$v->id}}','{{$v->nama}}','{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}','{{$v->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambahkan</button>
                 </div>
 
             </div>

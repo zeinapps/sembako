@@ -7,7 +7,7 @@
             <div class="col-sm-9 row">
                 <div class="blog-post-area">
                     <h2 class="title text-center">Cara Pembelian</h2>
-                    <div class="single-blog-post">
+                    <div class="single-blog-post" style="padding-left: 10px; padding-right: 10px;">
                         <h3>1. Kirim Pesanan Via HP/WA</h3>
 <!--                        <div class="post-meta">
                             <ul>
@@ -32,11 +32,11 @@
                         <br><p></p>
                         <br><p></p>
                         </div>
-                        <div class="single-blog-post">
+                    <div class="single-blog-post" style="padding-left: 10px; padding-right: 10px;">
                         <h2 class="title text-center">Penjelasan Lainnya</h2>
-                       
+
                         <p><a href="/keranjang"><i class="fa fa-shopping-cart"></i> Keranjang </a> belanja berfungsi sebagai alat untuk menampung produk pesanan anda sementara. Dan juga sebagai alat hitung/kalkulator yang otomatis akan memberi tahu total harga produk yang telah Anda pilih.</p>
-                        <br><p>Untuk saat ini pengiriman barang akan dilakukan 2 tahap yaitu pagi dan sore/malam hari. Sehingga pemesanan pada pagi sampai sore hari akan dikirim sore. Dan pemesanan sore sampai pagi akan dikirim pagi.</p>
+                        <br><p>Untuk saat ini pengiriman barang akan dilakukan keesokan harinya. Misalnya Anda melakuakan pemesanan produk hari ini, maka barang akan di antarkan besuk mulai pagi hari. Atau pengiriman bisa dilakukan sesuai permintaan yang telah disepakati bersama saat proses pemesanan.</p>
                         <br><p>Barang yang telah Anda pesan akan kami kirim ke tempat Anda berada sesuai petunjuk yang telah Anda berikan ke kami. Jika Anda membeli produk kami senilai minimal Rp25.000 atau lebih, maka ongkos kirim <strong>GRATIS</strong>. Jika kurang dari Rp25.000, maka biaya kiraim hanya Rp2.000.</p>
                         <br><p>Pembayaran dilakukan secara langsung bersamaan dengan serah terima barang pesanan Pelanggan.</p>
                         <br><p>Aturan di atas bukan haga mati, artinya secara berkala kami akan terus menyempurnakan sistem dan pelayanan kami agar pelanggan semakin terpuaskan.    </p>

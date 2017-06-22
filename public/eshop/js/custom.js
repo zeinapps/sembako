@@ -119,35 +119,59 @@ function setKeranjang() {
     setJumlahKeranjang(arkeranjang.length);
     for (var i in arkeranjang) {
 
-        var row = "<tr id='item_prod_" + arkeranjang[i].id + "'>\n\
-                            <td class='cart_product'>\n\
-                                <img src='" + arkeranjang[i].image + "' alt=''>\n\
-                            </td>\n\
-                            <td class='cart_description'>\n\
-                                <h4>" + arkeranjang[i].nama + "</h4>\n\
-                                <p>Barcode: -</p>\n\
-                            </td>\n\
-                            <td class='cart_price'>\n\
-                                <p>IDR " + arkeranjang[i].harga + "</p>\n\
-                            </td>\n\
-                            <td class='cart_quantity'>\n\
-                                <div class='cart_quantity_button'>\n\
-                                    <a onClick='plus_keranjang(" + arkeranjang[i].id + ")' class='cart_quantity_up' href='javascript: void(0)'> + </a>\n\
-                                    <input type='hidden' value='" + arkeranjang[i].id + "' name='id[]' />\n\
-                                <input type='hidden' value='" + arkeranjang[i].harga + "' name='harga_satuan[]' />\n\
-                                 <input id='jum_id_" + arkeranjang[i].id + "' class='cart_quantity_input' type='text' name='jumlah[]' value='" + arkeranjang[i].jumlah + "' autocomplete='off' size='2'>\n\
-                                    <a onClick='min_keranjang(" + arkeranjang[i].id + ")' class='cart_quantity_down' href='javascript: void(0)'> - </a>\n\
-                                </div>\n\
-                            </td>\n\
-                            <td class='cart_total'>\n\
-                                <p id='id_sub_" + arkeranjang[i].id + "' class='cart_total_price'>IDR " + 0 + "</p>\n\
-                            </td>\n\
-                            <td class='cart_delete'>\n\
-                                <a onClick='delete_produk(" + arkeranjang[i].id + ")'  class='cart_quantity_delete' href='javascript: void(0)'><i class='fa fa-times'></i></a>\n\
-                            </td>\n\
-                        </tr>\n\
-                        ";
-        $("#tbody_keranjang").append(row);
+//        var row = "<tr id='item_prod_" + arkeranjang[i].id + "'>\n\
+//                            <td class='cart_product'>\n\
+//                                <img src='" + arkeranjang[i].image + "' alt=''>\n\
+//                            </td>\n\
+//                            <td class='cart_description'>\n\
+//                            <h4>" + arkeranjang[i].nama + "</h4>\n\
+//                                <p>Barcode: -</p>\n\
+//                            </td>\n\
+//                            <td class='cart_price'>\n\
+//                                <p>IDR " + arkeranjang[i].harga + "</p>\n\
+//                            </td>\n\
+//                            <td class='cart_quantity'>\n\
+//                                <div class='cart_quantity_button'>\n\
+//                                    <a onClick='plus_keranjang(" + arkeranjang[i].id + ")' class='cart_quantity_up' href='javascript: void(0)'> + </a>\n\
+//                                    <input type='hidden' value='" + arkeranjang[i].id + "' name='id[]' />\n\
+//                                <input type='hidden' value='" + arkeranjang[i].harga + "' name='harga_satuan[]' />\n\
+//                                 <input id='jum_id_" + arkeranjang[i].id + "' class='cart_quantity_input' type='text' name='jumlah[]' value='" + arkeranjang[i].jumlah + "' autocomplete='off' size='2'>\n\
+//                                    <a onClick='min_keranjang(" + arkeranjang[i].id + ")' class='cart_quantity_down' href='javascript: void(0)'> - </a>\n\
+//                                </div>\n\
+//                            </td>\n\
+//                            <td class='cart_total'>\n\
+//                                <p id='id_sub_" + arkeranjang[i].id + "' class='cart_total_price'>IDR " + 0 + "</p>\n\
+//                            </td>\n\
+//                            <td class='cart_delete'>\n\
+//                                <a onClick='delete_produk(" + arkeranjang[i].id + ")'  class='cart_quantity_delete' href='javascript: void(0)'><i class='fa fa-times'></i></a>\n\
+//                            </td>\n\
+//                        </tr>\n\
+//                        ";
+        
+        var row = "<div id='item_prod_" + arkeranjang[i].id + "' class='col-xs-6 col-sm-6 col-md-4 col-lg-4'>\n\
+                        <div class='product-image-wrapper'>    \n\
+                            <div class='single-products'>    \n\
+                                <div class='productinfo text-center'>    \n\
+                                    <a href='/produk/" + arkeranjang[i].id + "'>     \n\
+                                        <img src=" + arkeranjang[i].image + " />    \n\
+                                    </a>    \n\
+                                    <h2>@" + arkeranjang[i].harga + "</h2>        \n\
+                                    <div style='height: 40px;'>     \n\
+                                        <h4><strong>" + arkeranjang[i].nama + "</strong></h4>    \n\
+                                    </div>    \n\
+                                            <a onClick='plus_keranjang(" + arkeranjang[i].id + ")' class='btn btn-success btn-sm' href='javascript: void(0)'> + </a>\n\
+                                            <input type='hidden' value='" + arkeranjang[i].id + "' name='id[]' />\n\
+                                        <input type='hidden' value='" + arkeranjang[i].harga + "' name='harga_satuan[]' />\n\
+                                        <input id='jum_id_" + arkeranjang[i].id + "' class='' type='text' name='jumlah[]' value='" + arkeranjang[i].jumlah + "' autocomplete='off' size='2'>\n\
+                                            <a onClick='min_keranjang(" + arkeranjang[i].id + ")' class='btn btn-warning btn-sm' href='javascript: void(0)'> - </a>\n\
+                                    <h4 id='id_sub_" + arkeranjang[i].id + "' class=''>IDR " + 0 + "</h4>\n\
+                                    <a onClick='delete_produk(" + arkeranjang[i].id + ")'  class='btn btn-danger btn-sm' href='javascript: void(0)'><i class='fa fa-times'></i> Batal</a>\n\
+                                </div> \n\
+                            </div> \n\
+                        </div> \n\
+                   </div> \n\
+                    "
+        $("#div_keranjang").append(row);
     }
 
     hitungtotal();
@@ -222,11 +246,11 @@ function hitungtotal() {
     var ongkir = 0;
     var Total_Biaya = total + ongkir;
     $("#id_subtotal").remove();
-    var str_subtotal = "<tr id='id_subtotal'>";
-    str_subtotal += "<td colspan='4'></td>";
-    str_subtotal += "<td colspan='2'>";
-    str_subtotal += "<table class='table table-condensed total-result'>";
-    str_subtotal += "<tr>";
+//    var str_subtotal = "<tr id='id_subtotal'>";
+//    str_subtotal += "<td colspan='4'></td>";
+//    str_subtotal += "<td colspan='2'>";
+//    str_subtotal += "<table class='table table-condensed total-result'>";
+//    str_subtotal += "<tr>";
 //    str_subtotal += "<td>Sub Total</td>";
 //    str_subtotal += "<td>" + total + "</td>";
 //    str_subtotal += "</tr>";
@@ -234,14 +258,18 @@ function hitungtotal() {
 //    str_subtotal += "<td>Ongkos kirim</td>";
 //    str_subtotal += "<td>" + ongkir + "</td>";
 //    str_subtotal += "</tr>";
-    str_subtotal += "<tr>";
-    str_subtotal += "<td>Total</td>";
-    str_subtotal += "<td><span>" + Total_Biaya + "</span></td>";
-    str_subtotal += "</tr>";
-    str_subtotal += "</table>";
-    str_subtotal += "</td>";
-    str_subtotal += "</tr>";
-    $("#tbody_keranjang").append(str_subtotal);
+//    str_subtotal += "<tr>";
+//    str_subtotal += "<td>Total</td>";
+//    str_subtotal += "<td><span>" + Total_Biaya + "</span></td>";
+//    str_subtotal += "</tr>";
+//    str_subtotal += "</table>";
+//    str_subtotal += "</td>";
+//    str_subtotal += "</tr>";
+    var str_subtotal = "<div id='id_subtotal'>";
+    str_subtotal += "<h3>Total Harga <strong>Rp"+Total_Biaya+"</strong></h3>";
+    str_subtotal += "</div>";
+    str_subtotal += "</div>";
+    $("#total_keranjang").append(str_subtotal);
 }
 
 function plus_keranjang(id) {

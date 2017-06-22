@@ -31,7 +31,7 @@
                                     @foreach ($data as $v)
                                     <tr>
                                         <td>
-                                            TR{{ $v->nama }}
+                                            {{ $v->nama }}
                                         </td>
                                         <td>
                                             {{ $v->harga }}

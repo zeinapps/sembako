@@ -41,7 +41,7 @@
                         <div class="col-sm-6">
                             <div class="contactinfo">
                                 <ul class="nav nav-pills">
-                                    <li><a href="/"><i class="fa fa-phone"></i> {{Config::get('app.no_wa')}}</a></li>
+                                    <li><a href="/"><i class="fa fa-phone"></i>/WA {{Config::get('app.no_wa')}}</a></li>
                                     <!--<li><a href="/"><i class="fa fa-envelope"></i> zein.apps@gmail.com</a></li>-->
                                 </ul>
                             </div>

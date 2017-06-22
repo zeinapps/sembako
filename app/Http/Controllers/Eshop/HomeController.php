@@ -23,46 +23,46 @@ class HomeController extends Controller
         }else{
             $userid = 0;
         }
-        $paginasi = config('app.paginasi_produk');
+        $paginasi = config('app.paginasi_pencarian_produk');
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
                 ->select('barang.id as id','barang.nama as nama','harga',
                         'hargaonline','kategori_barang.nama as kategori','gambar',
                         DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                 ->where('barang.display','1')
-                ->orderBy(DB::raw('RAND()'))
-                ->take($paginasi)->get();
+//                ->orderBy(DB::raw('RAND()'))
+                ->paginate($paginasi);
+//        dd($querys->getItem());
+//        $rekomended = Barang::where('barang.display','1')->orderBy(DB::raw('RAND()'))
+//		->take(6)->get();
         
-        $rekomended = Barang::where('barang.display','1')->orderBy(DB::raw('RAND()'))
-		->take(6)->get();
-        
-        $rekomended1 = [];
-        $rekomended2 = [];
-        $i = 0;
-        foreach ($rekomended as $reko) {
-            $i++;
-            if($i <=3 ){
-                $rekomended1[] = $reko;
-            }else{
-                $rekomended2[] = $reko;
-            }
-        }
-        
-        $sliders = Barang::select('*')
-                ->orderBy(DB::raw('RAND()'))
-		->take(4)->get();
-        
-        $slider = [];
-        $n0 = 0;
-        foreach ($sliders as $va) {
-            $n0++;
-            $va->no = $n0;
-            $slider[] =  $va;
-        }
+//        $rekomended1 = [];
+//        $rekomended2 = [];
+//        $i = 0;
+//        foreach ($rekomended as $reko) {
+//            $i++;
+//            if($i <=3 ){
+//                $rekomended1[] = $reko;
+//            }else{
+//                $rekomended2[] = $reko;
+//            }
+//        }
+//        
+//        $sliders = Barang::select('*')
+//                ->orderBy(DB::raw('RAND()'))
+//		->take(4)->get();
+//        
+//        $slider = [];
+//        $n0 = 0;
+//        foreach ($sliders as $va) {
+//            $n0++;
+//            $va->no = $n0;
+//            $slider[] =  $va;
+//        }
         
         $data = [
-            'slider' => $slider,
-            'rekomended1' => $rekomended1,
-            'rekomended2' => $rekomended2,
+//            'slider' => $slider,
+//            'rekomended1' => $rekomended1,
+//            'rekomended2' => $rekomended2,
             'data' => $querys,
             'title' => 'Produk Pilihan'
         ];

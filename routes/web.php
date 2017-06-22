@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth','isadmin']], function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::post('/penjualan', 'Eshop\PenjualanController@store');
+    Route::post('/penjualan', 'Eshop\TransaksiController@store');
     Route::post('/ubahakun', 'Eshop\AkunController@store');
     Route::post('/ubahpwd', 'Eshop\AkunController@storepwd');
     Route::get('/akunubahpwd', 'Eshop\AkunController@ubahpwd');
