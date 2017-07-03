@@ -102,6 +102,16 @@ setJumlahKeranjang(arkj.length);
 function setJumlahKeranjang(jumlah) {
     $("#jumlah_item_keranjang").text(jumlah);
     $("#jumlah_item_keranjang_bottom").text(jumlah);
+    var minpem = 50000;
+    var kurangdikit = minpem - getTotalSementara() ;
+    var message = "Pastikan Anda sudah pernah menge-clik Cara Beli";
+    if(kurangdikit != 50000){
+        message =  "Total belanja saat ini Rp"+formatrupiah(getTotalSementara())+", Dapatkan \"Free Ongkir\" dengan belanja Rp"+formatrupiah(kurangdikit)+" lagi";
+    }else{
+        
+    }
+    $("#jumlah_harga_keranjang_bottom").text("Rp"+formatrupiah(getTotalSementara()));
+    $("#message_marque").text(message);
 }
 
 function getCookieKeranjang() {
@@ -153,7 +163,7 @@ function setKeranjang() {
                             <div class='single-products'>    \n\
                                 <div class='productinfo text-center'>    \n\
                                     <a href='/produk/" + arkeranjang[i].id + "'>     \n\
-                                        <img src=" + arkeranjang[i].image + " />    \n\
+                                        <img src=" + arkeranjang[i].image.replace("85", "250") + " />    \n\
                                     </a>    \n\
                                     <h2>@" + arkeranjang[i].harga + "</h2>        \n\
                                     <div style='height: 40px;'>     \n\
@@ -206,9 +216,9 @@ $("#modal_tambahkan").click(function () {
         array_keranjang.push(new_item);
     }
     
-    setJumlahKeranjang(array_keranjang.length);
     
     setCookieKeranjang(array_keranjang);
+    setJumlahKeranjang(array_keranjang.length);
     $('#myModal').modal('hide');
 });
 
@@ -230,6 +240,16 @@ function delete_produk(id) {
     hitungtotal();
 }
 
+function getTotalSementara(){
+    var total = 0;
+    var json_keranjang = getCookieKeranjang();
+    var array_keranjang = jQuery.parseJSON(json_keranjang);
+    for (var x in array_keranjang) {
+        var sub_tot = parseInt(parseInt(array_keranjang[x].jumlah) * parseInt(array_keranjang[x].harga));
+        total += sub_tot;
+    }
+    return total;
+}
 
 function hitungtotal() {
 
@@ -242,7 +262,7 @@ function hitungtotal() {
         $("#id_sub_" + array_keranjang[x].id).text('IDR ' + sub_tot);
     }
 
-
+    setJumlahKeranjang(array_keranjang.length);
     var ongkir = 0;
     var Total_Biaya = total + ongkir;
     $("#id_subtotal").remove();
@@ -317,3 +337,17 @@ $("#modal_input_jumlah").keydown(function (e) {
                                 e.preventDefault();
                             }
                         });
+                        
+function formatrupiah(bilangan){
+	
+    var	number_string = bilangan.toString(),
+            sisa 	= number_string.length % 3,
+            rupiah 	= number_string.substr(0, sisa),
+            ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+    if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+    }
+    return rupiah;
+}

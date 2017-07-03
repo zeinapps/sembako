@@ -142,8 +142,10 @@ class BarangController extends Controller
         $tags = explode(',', substr($request->tag, 0, strlen($request->tag)-1));
         
         foreach ($tags as $value) {
-            $tag = Tag::updateOrCreate(['nama' => $value]);
-            Tag_barang::updateOrCreate(['barang_id' => $barang_id, 'tag_id' => $tag->id]);
+            if($tt = trim($value)){
+                $tag = Tag::updateOrCreate(['nama' => $tt]);
+                Tag_barang::updateOrCreate(['barang_id' => $barang_id, 'tag_id' => $tag->id]);
+            }
         }
         
         return redirect('barang')->with('status', ['Sukses Tambah/Ubah Data']);

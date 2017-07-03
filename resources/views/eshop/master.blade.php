@@ -147,13 +147,14 @@
         @yield('content')
         
         <div id="keranjang_bottom" class="alert alert-success" style="padding: 5px; margin-bottom: 0px;">
-            <a style="margin-right: 5px;" href="/keranjang"><i class="fa fa-shopping-cart"></i> <span class="label label-danger" id="jumlah_item_keranjang_bottom">0</span></a>
+            <a style="margin-right: 5px;" href="/keranjang"><i class="fa fa-shopping-cart"></i> <span class="label label-danger" id="jumlah_item_keranjang_bottom">0</span> <span class="label label-danger" id="jumlah_harga_keranjang_bottom">Rp0</span></a>
             @if(!Auth::guest())
-            <a href="/kesukaan"><i class="fa fa-star"></i> <span class="label label-danger" id="jumlah_item_keranjang_bottom">{{Auth::check()?Auth::user()->kesukaan : 0}}</span></a>
+            <a href="/kesukaan"><i class="fa fa-star"></i> <span class="label label-danger" id="">{{Auth::check()?Auth::user()->kesukaan : 0}}</span></a>
             @endif
             <a style="margin-right: 5px;" href="/carapembelian"> <span class="label label-info" id="">Cara Beli</span></a>
         </div>
-
+        <div id="marqueee" class="" style=" margin-bottom: 0px;"><marquee><span class="label label-danger" id="message_marque">0</span></marquee></div>
+        
         <footer id="footer"><!--Footer-->
 
 

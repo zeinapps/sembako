@@ -35,9 +35,18 @@
                     <div class="single-blog-post" style="padding-left: 10px; padding-right: 10px;">
                         <h2 class="title text-center">Penjelasan Lainnya</h2>
 
-                        <p><a href="/keranjang"><i class="fa fa-shopping-cart"></i> Keranjang </a> belanja berfungsi sebagai alat untuk menampung produk pesanan anda sementara. Dan juga sebagai alat hitung/kalkulator yang otomatis akan memberi tahu total harga produk yang telah Anda pilih.</p>
-                        <br><p>Untuk saat ini pengiriman barang akan dilakukan keesokan harinya. Misalnya Anda melakuakan pemesanan produk hari ini, maka barang akan di antarkan besuk mulai pagi hari. Atau pengiriman bisa dilakukan sesuai permintaan yang telah disepakati bersama saat proses pemesanan.</p>
-                        <br><p>Barang yang telah Anda pesan akan kami kirim ke tempat Anda berada sesuai petunjuk yang telah Anda berikan ke kami. Jika Anda membeli produk kami senilai minimal Rp25.000 atau lebih, maka ongkos kirim <strong>GRATIS</strong>. Jika kurang dari Rp25.000, maka biaya kiraim hanya Rp2.000.</p>
+                        <p><a href="/keranjang"><i class="fa fa-shopping-cart"></i> Keranjang </a> belanja berfungsi sebagai alat untuk menampung produk pesanan anda sementara. Dan juga sebagai alat hitung yang otomatis akan memberi tahu total harga sementara produk yang telah Anda pilih.</p>
+                        <br><p>Pengiriman barang akan dilakukan maximal <strong>24 jam</strong> setelah pemesanan diterima. Atau pengiriman bisa dilakukan sesuai permintaan yang telah disepakati bersama saat proses pemesanan.</p>
+                        <br><p>Barang yang telah Anda pesan akan kami kirim ke tempat Anda berada sesuai petunjuk yang telah Anda berikan ke kami. Biaya pengiriman <strong>GRATIS</strong> jika total pembelian senilai di atas Rp50.000, atau sesuai kesepakatan bersama saat proses negosiasi. Aturan umum terkait biaya kirim sebagai berikut:
+                        <ol>
+                            <li><strong>GRATIS</strong> jika total pembelian diatas Rp50.000</li>
+                            <li>Rp1.000 jika total pembelian antara Rp40.000 - Rp50.000</li>
+                            <li>Rp2.000 jika total pembelian antara Rp30.000 - Rp40.000</li>
+                            <li>Rp3.000 jika total pembelian antara Rp20.000 - Rp30.000</li>
+                            <li>Rp4.000 jika total pembelian antara Rp10.000 - Rp20.000</li>
+                            <li>Rp5.000 jika total pembelian antara Rp100 - Rp10.000</li>
+                        </ol>
+                        Biaya kirim bisa <strong>di-Nego</strong> sampai <strong>Rp0</strong>.</p>
                         <br><p>Pembayaran dilakukan secara langsung bersamaan dengan serah terima barang pesanan Pelanggan.</p>
                         <br><p>Aturan di atas bukan haga mati, artinya secara berkala kami akan terus menyempurnakan sistem dan pelayanan kami agar pelanggan semakin terpuaskan.    </p>
                         <br><p>Untuk saat ini, Kami hanya melayani pembelian produk oleh pelanggan yang berdomisili di kawasan Kecamatan Karang Ploso, Kabupaten Malang. Khususnya Perumahan Karangploso View, Bumi Perkasa, Arjuna Gumilang, Permata Regency, GPA, dan sekitarnya. Saran dan kritik yang membangun bisa dikirim lewat nomer WA {{Config::get('app.no_wa')}}. </p>
