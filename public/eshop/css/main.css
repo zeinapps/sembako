@@ -857,7 +857,7 @@ h2.title {
 .product-image-wrapper{
 	border:1px solid #F7F7F5;
 	overflow: hidden;
-	margin-bottom:30px;
+	margin-bottom:10px;
 }
 
 .single-products {
@@ -957,7 +957,7 @@ h2.title {
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 .add-to-cart:hover {
@@ -2609,6 +2609,63 @@ h2.title {
     z-index: 1000;
 }
 
-img {
-    border-radius: 8px;
+
+.box-ribbon-corner {
+   position:relative;
+   float:left;
+   margin:5px;
+   
 }
+.box-ribbon-corner img{
+    border-radius: 10px;
+}
+
+.ribbon-corner {
+   position: absolute;
+   right: -5px; top: -5px;
+   z-index: 1;
+   overflow: hidden;
+   width: 75px; height: 75px; 
+   text-align: right;
+}
+.ribbon-corner span {
+   font-size: 10px;
+   color: #fff; 
+   text-transform: uppercase; 
+   text-align: center;
+   font-weight: bold; line-height: 20px;
+   transform: rotate(45deg);
+   width: 100px; display: block;
+   background: #79A70A;
+   background: linear-gradient(#9BC90D 0%, #79A70A 100%);
+   box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+   position: absolute;
+   top: 19px; right: -21px;
+}
+.ribbon-corner span::before {
+   content: '';
+   position: absolute; 
+   left: 0px; top: 100%;
+   z-index: -1;
+   border-left: 3px solid #79A70A;
+   border-right: 3px solid transparent;
+   border-bottom: 3px solid transparent;
+   border-top: 3px solid #79A70A;
+}
+.ribbon-corner span::after {
+   content: '';
+   position: absolute; 
+   right: 0%; top: 100%;
+   z-index: -1;
+   border-right: 3px solid #79A70A;
+   border-left: 3px solid transparent;
+   border-bottom: 3px solid transparent;
+   border-top: 3px solid #79A70A;
+}
+.red span {background: linear-gradient(#F70505 0%, #8F0808 100%);}
+.red span::before {border-left-color: #8F0808; border-top-color: #8F0808;}
+.red span::after {border-right-color: #8F0808; border-top-color: #8F0808;}
+
+.blue span {background: linear-gradient(#2989d8 0%, #1e5799 100%);}
+.blue span::before {border-left-color: #1e5799; border-top-color: #1e5799;}
+.blue span::after {border-right-color: #1e5799; border-top-color: #1e5799;}

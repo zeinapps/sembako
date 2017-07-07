@@ -138,7 +138,7 @@ function setKeranjang() {
 //                                <p>Barcode: -</p>\n\
 //                            </td>\n\
 //                            <td class='cart_price'>\n\
-//                                <p>IDR " + arkeranjang[i].harga + "</p>\n\
+//                                <p>Rp " + arkeranjang[i].harga + "</p>\n\
 //                            </td>\n\
 //                            <td class='cart_quantity'>\n\
 //                                <div class='cart_quantity_button'>\n\
@@ -150,7 +150,7 @@ function setKeranjang() {
 //                                </div>\n\
 //                            </td>\n\
 //                            <td class='cart_total'>\n\
-//                                <p id='id_sub_" + arkeranjang[i].id + "' class='cart_total_price'>IDR " + 0 + "</p>\n\
+//                                <p id='id_sub_" + arkeranjang[i].id + "' class='cart_total_price'>Rp " + 0 + "</p>\n\
 //                            </td>\n\
 //                            <td class='cart_delete'>\n\
 //                                <a onClick='delete_produk(" + arkeranjang[i].id + ")'  class='cart_quantity_delete' href='javascript: void(0)'><i class='fa fa-times'></i></a>\n\
@@ -163,7 +163,10 @@ function setKeranjang() {
                             <div class='single-products'>    \n\
                                 <div class='productinfo text-center'>    \n\
                                     <a href='/produk/" + arkeranjang[i].id + "'>     \n\
-                                        <img src=" + arkeranjang[i].image.replace("85", "250") + " />    \n\
+                                        <div class='box-ribbon-corner' align='center'> \n\
+                                            <div class='ribbon-corner red'><span>Baru</span></div>        \n\
+                                            <img src=" + arkeranjang[i].image.replace("85", "250") + " />    \n\
+                                        </div>  \n\
                                     </a>    \n\
                                     <h2>@" + arkeranjang[i].harga + "</h2>        \n\
                                     <div style='height: 40px;'>     \n\
@@ -174,7 +177,7 @@ function setKeranjang() {
                                         <input type='hidden' value='" + arkeranjang[i].harga + "' name='harga_satuan[]' />\n\
                                         <input id='jum_id_" + arkeranjang[i].id + "' class='' type='text' name='jumlah[]' value='" + arkeranjang[i].jumlah + "' autocomplete='off' size='2'>\n\
                                             <a onClick='min_keranjang(" + arkeranjang[i].id + ")' class='btn btn-warning btn-sm' href='javascript: void(0)'> - </a>\n\
-                                    <h4 id='id_sub_" + arkeranjang[i].id + "' class=''>IDR " + 0 + "</h4>\n\
+                                    <h4 id='id_sub_" + arkeranjang[i].id + "' class=''>Rp " + 0 + "</h4>\n\
                                     <a onClick='delete_produk(" + arkeranjang[i].id + ")'  class='btn btn-danger btn-sm' href='javascript: void(0)'><i class='fa fa-times'></i> Batal</a>\n\
                                 </div> \n\
                             </div> \n\
@@ -259,7 +262,7 @@ function hitungtotal() {
     for (var x in array_keranjang) {
         var sub_tot = parseInt($("#jum_id_" + array_keranjang[x].id).val() * parseInt(array_keranjang[x].harga));
         total += sub_tot;
-        $("#id_sub_" + array_keranjang[x].id).text('IDR ' + sub_tot);
+        $("#id_sub_" + array_keranjang[x].id).text('Rp ' + sub_tot);
     }
 
     setJumlahKeranjang(array_keranjang.length);

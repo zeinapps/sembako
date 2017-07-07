@@ -20,6 +20,7 @@ return [
     'name' => 'Admin Rumah',
     'no_wa' => env('NO_WA'),
     'nama_toko' => env('NAMA_TOKO', 'LAPAK KARLOS'),
+    'alamat_toko' => env('NAMA_TOKO', 'Perum Karangploso View GG7, Karangploso, Malang'),
     'status_penjualan' => [
         1 => 'Baru',
         2 => 'Proses',

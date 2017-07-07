@@ -13,7 +13,7 @@
                                 <a href="{{ url("/produk/".$v->id) }}">
                                     <img style="width: 85px;" src="{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}" alt="" />
                                 </a>
-                                <h2>IDR {{ $v->hargaonline }}</h2>
+                                <h2>Rp {{ $v->hargaonline }}</h2>
                                 <p>{{ $v->nama }}</p>
                                 <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$v->id}}','{{$v->nama}}','{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}','{{$v->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
                             </div>
@@ -31,7 +31,7 @@
                                 <a href="{{ url("/produk/".$v->id) }}" >
                                     <img style="width: 85px;" src="{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}" alt="" />
                                 </a>
-                                <h2>IDR {{ $v->hargaonline }}</h2>
+                                <h2>Rp {{ $v->hargaonline }}</h2>
                                 <p>{{ $v->nama }}</p>
                                 <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('{{$v->id}}','{{$v->nama}}','{{ Config::get("app.image_url_produk")."/85/".$v->gambar }}','{{$v->hargaonline}}')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
                             </div>

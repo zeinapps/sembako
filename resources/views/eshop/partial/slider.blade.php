@@ -12,7 +12,7 @@
                         @foreach ($slider as $v)
                         <div class="item @if($v->no == 1 ) {{'active' }} @endif">
                             <div class="col-sm-6">
-                                <h1><span>IDR</span> {{ $v->hargaonline }}</h1>
+                                <h1><span>Rp</span> {{ $v->hargaonline }}</h1>
                                 <h2>{{ $v->nama }}</h2>
                                 <a href="{{ url("/produk/".$v->id) }}" class="btn btn-default get">Lihat</a>
                             </div>
