@@ -166,6 +166,12 @@ class BarangController extends Controller
         $success_upload = null;
         foreach (config('app.resolusi_gambar') as $resolusi) {
             $image->resize($resolusi,$resolusi);
+            $watermark = Image::make(storage_path().'/app/public/images/watermark_hitam.png');
+            $perbandingan = (0.8)*$resolusi/$watermark->width();
+            $width_watermark = $perbandingan*$watermark->width();
+            $height_watermark = $perbandingan*$watermark->height();
+            $watermark->resize($width_watermark,$height_watermark);
+            $image->insert($watermark, 'center');
             $success_upload = $image->save($destination.'/'.$resolusi.'/'.$filename);
         }
         if($success_upload){

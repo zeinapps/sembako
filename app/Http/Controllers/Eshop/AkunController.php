@@ -42,7 +42,7 @@ class AkunController extends Controller
             $s = $request->s;
             $title = 'Hasil Pencarian "'.$request->s.'"';
         }else{
-            $title = 'Kesukaan Saya';
+            $title = 'Favorit Saya';
         }
         $querys = $querys->paginate($paginasi);
         return view('eshop/akun/kesukaan', ['data' => $querys, 's' => $s, 'title' => $title,]);

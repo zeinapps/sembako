@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', 'Eshop\HomeController@index');
-Route::get('produk', 'Eshop\ProdukController@index');
+Route::get('/', 'Eshop\ProdukController@index');
+//Route::get('produk', 'Eshop\ProdukController@index');
 Route::get('produk/{id}', 'Eshop\ProdukController@show');
-Route::get('kategori/{id}', 'Eshop\ProdukController@kategori');
+//Route::get('kategori/{id}', 'Eshop\ProdukController@kategori');
 Route::get('keranjang', 'Eshop\ProdukController@keranjang');
 Route::get('carapembelian', function () { return view('eshop/carapembelian'); });
 Route::get('kontak', function () { return view('eshop/kontak'); });

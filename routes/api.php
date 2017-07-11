@@ -24,3 +24,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/suka', 'Eshop\AkunController@suka');
     Route::post('/tidaksuka', 'Eshop\AkunController@tidaksuka');
 });
+
+Route::group([ 'middleware' => []], function () {
+    Route::get('produk', 'Eshop\ProdukController@apiindex');
+});

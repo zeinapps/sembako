@@ -123,16 +123,16 @@
             <div class="container" id="header-search" style="width:100%; ">
                 <nav class="row" id="search-form">
                     <div class="col-sm-12">
-                        <form action="{{ url('/produk') }}" method="GET">
+                        <!--<form action="{{ url('/produk') }}" method="GET">-->
                             <div class="input-group input-group-lg col-md-6 col-md-offset-3">
-                                <input placeholder="Pencarian Produk" name="s"  class="form-control" type="text" value="@if(isset($s)){{  $s ? $s : '' }}@endif">
+                                <input id="s_pencarian" placeholder="Pencarian Produk" name="s"  class="form-control" type="text" value="@if(isset($s)){{  $s ? $s : '' }}@endif">
                                 <span class="input-group-btn">
                                     <button id="sbtn" class="btn btn-primary" type="submit" style="margin-top: 0px;">
                                         Cari
                                     </button> 
                                 </span>
                             </div>
-                        </form>
+                        <!--</form>-->
                     </div>
                 </nav>
             </div>

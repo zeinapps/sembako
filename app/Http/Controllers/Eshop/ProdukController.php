@@ -25,44 +25,44 @@ class ProdukController extends Controller
         }else{
             $userid = 0;
         }
-        $paginasi = config('app.paginasi_pencarian_produk');
-        if(!$request->page){
-            $rownum = 0;
-        }else{
-            $rownum = ($request->page - 1) * $paginasi;
-        }
+//        $paginasi = config('app.paginasi_pencarian_produk');
+//        if(!$request->page){
+//            $rownum = 0;
+//        }else{
+//            $rownum = ($request->page - 1) * $paginasi;
+//        }
         $s = null;
-        DB::statement(DB::raw("set @rownum=$rownum"));
-        $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
-                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
-                        'hargaonline','kategori_barang.nama as kategori','gambar',
-                        DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
-                ->orderBy('id','desc');
-        $querys = $querys->where('barang.display','=','1');
+//        DB::statement(DB::raw("set @rownum=$rownum"));
+//        $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
+//                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
+//                        'hargaonline','kategori_barang.nama as kategori','gambar',
+//                        DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
+//                ->orderBy('id','desc');
+//        $querys = $querys->where('barang.display','=','1');
         if($request->s){
-            $idsformtag = [];
-            $q1 = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
-                    ->select('barang.id')
-                    ->where('kategori_barang.nama', 'like', "%$request->s%")
-                    ->orWhere('barang.nama', 'like', "%$request->s%");
-            $q2 = Barang::join('tag_barang', 'tag_barang.barang_id', '=', 'barang.id')
-                    ->select('barang.id')
-                    ->join('tag', 'tag_barang.tag_id', '=', 'tag.id')
-                    ->where('tag.nama', 'like', "%$request->s%")
-                    ->union($q1)
-                    ->get();
-            foreach ($q2 as $v) {
-                $idsformtag[] = $v->id;
-            }
-            $querys = $querys->whereIn('barang.id' ,$idsformtag);
+//            $idsformtag = [];
+//            $q1 = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
+//                    ->select('barang.id')
+//                    ->where('kategori_barang.nama', 'like', "%$request->s%")
+//                    ->orWhere('barang.nama', 'like', "%$request->s%");
+//            $q2 = Barang::join('tag_barang', 'tag_barang.barang_id', '=', 'barang.id')
+//                    ->select('barang.id')
+//                    ->join('tag', 'tag_barang.tag_id', '=', 'tag.id')
+//                    ->where('tag.nama', 'like', "%$request->s%")
+//                    ->union($q1)
+//                    ->get();
+//            foreach ($q2 as $v) {
+//                $idsformtag[] = $v->id;
+//            }
+//            $querys = $querys->whereIn('barang.id' ,$idsformtag);
             $s = $request->s;
             $title = 'Hasil Pencarian "'.$request->s.'"';
         }else{
             $title = 'Semua Produk';
         }
-        $querys = $querys->paginate($paginasi);
-        return view('eshop/produk/index', ['data' => $querys, 's' => $s, 'title' => $title]);
-        }
+//        $querys = $querys->paginate($paginasi);
+        return view('eshop/produkapi/index', [ 's' => $s, 'title' => $title]);
+    }
     
     public function kategori(Request $request, $id){
         if($user = $request->user()){
@@ -142,5 +142,64 @@ class ProdukController extends Controller
     
     public function keranjang(){
         return view('eshop/produk/keranjang' );
+    }
+    
+    public function apiindex(Request $request){
+        if($user = $request->user()){
+            $userid = $user->id;
+        }else{
+            $userid = 0;
+        }
+        $paginasi = config('app.paginasi_pencarian_produk');
+        if(!$request->page){
+            $rownum = 0;
+        }else{
+            $rownum = ($request->page - 1) * $paginasi;
+        }
+        $s = null;
+        $title = "Produk";
+        DB::statement(DB::raw("set @rownum=$rownum"));
+        $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
+                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
+                        'hargaonline','kategori_barang.nama as kategori','gambar',
+                        DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
+                ->orderBy('id','desc');
+        
+        if($request->kat){
+            $querys = $querys->where('kategori_id',$request->kat);
+        }
+        
+        $querys = $querys->where('barang.display','=','1');
+        if($request->s){
+            $title = 'Pencarian "'.$request->s.'"';
+            $idsformtag = [];
+            $q1 = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
+                    ->select('barang.id')
+                    ->where('kategori_barang.nama', 'like', "%$request->s%")
+                    ->orWhere('barang.nama', 'like', "%$request->s%");
+            $q2 = Barang::join('tag_barang', 'tag_barang.barang_id', '=', 'barang.id')
+                    ->select('barang.id')
+                    ->join('tag', 'tag_barang.tag_id', '=', 'tag.id')
+                    ->where('tag.nama', 'like', "%$request->s%")
+                    ->union($q1)
+                    ->get();
+            foreach ($q2 as $v) {
+                $idsformtag[] = $v->id;
+            }
+            $querys = $querys->whereIn('barang.id' ,$idsformtag);
+            $s = $request->s;
+        }else{
+        }
+        $querys = $querys->paginate($paginasi)->appends($request->all());
+        
+        if($request->kat){
+            $kategori = Kategoribarang::find($request->kat);
+            $title = "Kategori \"$kategori->nama\" ";
+        }
+        $custom = collect(['title' => $title]);
+        $data = $custom->merge($querys);
+        return response()
+            ->json($data)
+            ->withCallback($request->input('callback'));
     }
 }
