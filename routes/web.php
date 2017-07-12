@@ -64,3 +64,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/transaksi/{id}', 'Eshop\TransaksiController@show');
 });
 
+Route::group([ 'prefix' => 'api', 'middleware' => []], function () {
+    Route::get('produk', 'Eshop\ProdukController@apiindex');
+    Route::get('produk/{id}', 'Eshop\ProdukController@apidetil');
+});
+

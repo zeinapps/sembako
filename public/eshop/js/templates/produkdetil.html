@@ -1,0 +1,82 @@
+<div class="col-sm-9 padding-right">
+    <div class="product-details"><!--product-details-->
+        <div class="col-sm-5">
+            <div class="view-product box-ribbon-corner">
+                <div class="ribbon-corner red"><span>Baru</span></div>
+                <img src="/storage/images/produk/450/<%= produk.gambar %>" alt="<%= produk.nama %>" />
+            </div>
+
+
+        </div>
+        <div class="col-sm-7">
+            <div class="product-information"><!--/product-information-->
+                <!--<img src="/eshop/images/product-details/new.jpg" class="newarrival" alt="" />-->
+                <h2><%= produk.nama %></h2>
+                <p>Keterangan: <%= produk.keterangan %></p>
+                <span>
+                    <span>Rp <%= produk.hargaonline %></span><br>
+                </span><br>
+                <% if(produk.suka) { %>
+                <a id="link_suka_<%= produk.id %>" href="javascript: void(0)" onclick="tidaksuka(<%= produk.id %>)" class="btn btn-success "><i class="fa fa-star"></i> Batal Favorit</a>
+                <% }else{ %>
+                <a id="link_suka_<%= produk.id %>" href="javascript: void(0)" onclick="suka(<%= produk.id %>)" class="btn btn-warning "><i class="fa fa-star-o"></i> Favorit</a>
+                <% } %>
+                <br>
+                <button style="margin-top: 10px;" data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('<%= produk.id %>', '<%= produk.nama %>', '/storage/images/produk/85/<%= produk.gambar %>', '<%= produk.hargaonline %>')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
+                <!--<a href=""><img src="/eshop/images/product-details/share.png" class="share img-responsive"  alt="" /></a>-->
+            </div><!--/product-information-->
+        </div>
+    </div><!--/product-details-->
+
+    <div class="recommended_items"><!--recommended_items-->
+        <h2 class="title text-center">Produk Rekomendasi</h2>
+
+        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <% $.each(rekomended1 , function(i, val) { %>
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <a href="/#/produk/<%=val.id%>">
+                                            <img style="width: 85px;" src="/storage/images/produk/85/<%= val.gambar %>" alt="" />
+                                        </a>
+                                        <h2>Rp <%= val.hargaonline %></h2>
+                                        <p><%= val.nama %></p>
+                                        <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('<%= val.id %>','<%= val.nama %>','/storage/images/produk/85/<%= val.gambar %>','<%= val.hargaonline %>')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% });%>
+                  
+                </div>
+                <div class="item">	
+                    <% $.each(rekomended2 , function(i, val) { %>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <a href="/#/produk/<%=val.id%>">
+                                        <img style="width: 85px;" src="/storage/images/produk/85/<%= val.gambar %>" alt="" />
+                                    </a>
+                                    <h2>Rp <%= val.hargaonline %></h2>
+                                    <p><%= val.nama %></p>
+                                    <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('<%= val.id %>','<%= val.nama %>','/storage/images/produk/85/<%= val.gambar %>','<%= val.hargaonline %>')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% });%>
+                </div>
+            </div>
+            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>			
+        </div>
+    </div><!--/recommended_items-->
+</div>

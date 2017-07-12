@@ -6,9 +6,7 @@
             <div class="col-sm-9 padding-right">
                 @include('default.notifikasi.error')
                 @include('default.notifikasi.success')
-                <div class="features_items" id="features_items">
-
-                </div>
+           
                 
                 <div id="not_features_items">
                     <h2 class="title text-center">Keranjang belanja</h2>

@@ -5,12 +5,12 @@
     <div class="container">
         <div class="row">
             
-            @include('eshop.sidebar')
-            <div class="col-sm-9 padding-right">
-                <div class="features_items" id="features_items"><!--features_items-->
-                
-                </div><!--features_items-->
+            
+            <div class="col-sm-9 padding-left row" id="div_content">
+<!--                <div id="div_content">
+                </div>-->
             </div>
+            @include('eshop.sidebar')
         </div>
     </div>
 </section>

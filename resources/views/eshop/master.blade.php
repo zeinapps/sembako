@@ -5,14 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>{{Config::get('app.nama_toko')}}</title>
         <link href="/eshop/css/bootstrap.min.css" rel="stylesheet">
         <link href="/eshop/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/eshop/css/prettyPhoto.css" rel="stylesheet">
-        <link href="/eshop/css/price-range.css" rel="stylesheet">
+        <!--<link href="/eshop/css/prettyPhoto.css" rel="stylesheet">-->
+        <!--<link href="/eshop/css/price-range.css" rel="stylesheet">-->
         <link href="/eshop/css/animate.css" rel="stylesheet">
         <link href="/eshop/css/main.css" rel="stylesheet">
-        <link href="/eshop/css/responsive.css" rel="stylesheet">
+        <!--<link href="/eshop/css/responsive.css" rel="stylesheet">-->
         <!--[if lt IE 9]>
         <script src="/eshop/js/html5shiv.js"></script>
         <script src="/eshop/js/respond.min.js"></script>
@@ -99,9 +100,9 @@
                             </div>
                             <div class="mainmenu pull-left">
                                 <ul class="nav navbar-nav collapse navbar-collapse">
-                                    <li><a href="/" class="active">Beranda</a></li>
-                                    <li><a href="/carapembelian" class="active">Cara Pembelian</a></li>
-                                    <li><a href="/kontak" class="active">Kontak</a></li>
+                                    <li><a href="/#/" class="active">Beranda</a></li>
+                                    <li><a href="/#/carabeli" class="active">Cara Pembelian</a></li>
+                                    <li><a href="/#/kontak" class="active">Kontak</a></li>
 
                                 </ul>
                             </div>
@@ -151,7 +152,7 @@
             @if(!Auth::guest())
             <a href="/kesukaan"><i class="fa fa-star"></i> <span class="label label-danger" id="">{{Auth::check()?Auth::user()->kesukaan : 0}}</span></a>
             @endif
-            <a style="margin-right: 5px;" href="/carapembelian"> <span class="label label-info" id="">Cara Beli</span></a>
+            <a style="margin-right: 5px;" href="/#/carabeli"> <span class="label label-info" id="">Cara Beli</span></a>
         </div>
         <div id="marqueee" class="" style=" margin-bottom: 0px;"><marquee><span class="label label-danger" id="message_marque">0</span></marquee></div>
         
@@ -176,7 +177,7 @@
         <script src="/eshop/js/jquery.scrollUp.min.js"></script>
         <script src="/eshop/js/price-range.js"></script>
         <script src="/eshop/js/jquery.cookie.js"></script>
-        <script src="/eshop/js/jquery.prettyPhoto.js"></script>
+        <!--<script src="/eshop/js/jquery.prettyPhoto.js"></script>-->
         <script src="/eshop/js/main.js"></script>
         @if (!Auth::guest())
             <script>
@@ -254,13 +255,20 @@
                 </div>
             </div>
         </div>
-        
+        <script>
+            var nama_toko = "{{Config::get('app.nama_toko')}}";
+            var no_wa = "{{Config::get('app.no_wa')}}";
+            var alamat_toko = "{{Config::get('app.alamat_toko')}}";
+        </script>
         @if (count(session('deletecokies')) > 0)
         <script>
             $.removeCookie('keranjang');
         </script>
         @endif
+        <script src="/eshop/js/sammy.min.js"></script>
+        <script src="/eshop/js/sammy.template.js"></script>
         <script src="/eshop/js/custom.js"></script>
+        <script src="/eshop/js/app.js"></script> 
         
     </body>
 </html>

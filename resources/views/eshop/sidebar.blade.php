@@ -18,7 +18,7 @@
                     <div class="panel-body">
                         <ul>
                             @foreach($parent->child as $child)
-                            <li><a href='javascript: void(0)' onclick='kategori({{ $child->id }})'>{{ $child->nama }} </a></li>
+                            <li><a href='#/kategori/{{ $child->id }}' >{{ $child->nama }} </a></li>
                             @endforeach
                         </ul>
                     </div>
