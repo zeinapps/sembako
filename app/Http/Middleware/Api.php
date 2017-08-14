@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class Api
 {
     /**
      * Handle an incoming request.
@@ -17,10 +16,7 @@ class IsAdmin
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (!$request->user()->isadmin) {
-            abort(404);
-        }
-        
+        $request->api = true;
         return $next($request);
     }
 }

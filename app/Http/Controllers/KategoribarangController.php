@@ -35,20 +35,37 @@ class KategoribarangController extends Controller
             $s = $request->s;
         }
         $querys = $querys->paginate($paginasi);
-        return view('default/kategoribarang/index', ['data' => $querys, 's' => $s ]);
+        $response = ['data' => $querys, 's' => $s ];
+        if($request->api){
+            return response()->json([
+                'status' => true,
+                'data' => $response,
+            ]);
+        }
+        
+        return view('default/kategoribarang/index', $response);
     }
     
-    public function add(){
+    public function add(Request $request){
         $query = Kategoribarang::select('id','nama')->where('parent_id','=', null)->get();
         $parent = [];
         foreach ($query as $value) {
             $parent[$value->id.'|'.$value->nama] = $value->nama;
         }
         $selected_parent = null;
-        return view('default/kategoribarang/form', ['parent' => $parent, 'selected_parent' => $selected_parent]);
+        
+        $response = ['parent' => $parent, 'selected_parent' => $selected_parent];
+        if($request->api){
+            return response()->json([
+                'status' => true,
+                'data' => $response,
+            ]);
+        }
+        
+        return view('default/kategoribarang/form', $response);
     }
     
-    public function edit($id){
+    public function edit($id,Request $request){
         $selected_parent = null;
         $query = Kategoribarang::find($id)->toArray();
         
@@ -61,8 +78,15 @@ class KategoribarangController extends Controller
             }
             $parent[$i] = $value->nama;
         }
+        $response = array_merge($query, ['parent' => $parent,'selected_parent'=>$selected_parent]);
+        if($request->api){
+            return response()->json([
+                'status' => true,
+                'data' => $response,
+            ]);
+        }
         
-        return view('default/kategoribarang/form', array_merge($query, ['parent' => $parent,'selected_parent'=>$selected_parent]));
+        return view('default/kategoribarang/form', $response);
     }
     
     public function store(Request $request){   
@@ -130,21 +154,38 @@ class KategoribarangController extends Controller
         }
         Storage::put('json/kategori_barang.json', json_encode($kategori));
         
-        
+        if($request->api){
+            return response()->json([
+                'status' => true,
+                'data' => null,
+            ]);
+        }
         return redirect('kategoribarang')->with('status', ['Sukses Tambah/Ubah Data']);
     }
     
-    public function destroy($id){
+    public function destroy($id,Request $request){
         
         $barang = Barang::where('kategori_id',$id)->first();
         $error = [];
         if(!$barang){
             Kategoribarang::find($id)->delete();
+            if($request->api){
+            return response()->json([
+                    'status' => true,
+                    'message' => 'Sukses',
+                ]);
+            }
             return redirect('kategoribarang')->with('status', ['Sukses Hapus Data']);
         }else{
             $error = [
                 'Ada data barang masih terkait dengan kategori ini'
             ];
+            if($request->api){
+            return response()->json([
+                    'status' => false,
+                    'message' => 'Gagal',
+                ]);
+            }
             return redirect('kategoribarang')->withErrors($error);
         }
         

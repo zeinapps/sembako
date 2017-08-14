@@ -39,27 +39,44 @@ class BarangController extends Controller
             $s = $request->s;
         }
         $querys = $querys->paginate($paginasi);
-        return view('default/barang/index', ['data' => $querys, 's' => $s]);
+        
+        $response = ['status' => true, 's' => $s, 'total'=>$querys->total(),'data' => $querys, ];
+                
+        if($request->api){
+            return response()->json($response);
+        }
+        return view('default/barang/index', $response);
     }
     
-    public function add(){
+    public function add(Request $request){
         $Allkategori = Kategoribarang::select('id','nama')->where('parent_id','>', 0)->get();
         $kategori=[];
+        $kat = [];
         foreach ($Allkategori as $value) {
             $i = $value->id;
-            $kategori[$i] = $value->nama;
+            $kategori[] = [
+                'id' => $i, 'nama'=> $value->nama];
+            $kat[$i] = $value->nama;
         }
         $display = [0,1];
          $selected_display = null;
         $selected_kategori = null;
-        return view('default/barang/form', [
+        $response = [
             'selected_display' => $selected_display ,
             'display' => $display,
             'kategori' => $kategori, 
-            'selected_kategori' => $selected_kategori ]);
+            'selected_kategori' => $selected_kategori ];
+        if($request->api){
+            return response()->json([
+                'status' => true,
+                'data' => $response,
+            ]);
+        }
+        $response['kategori'] = $kat;
+        return view('default/barang/form', $response);
     }
     
-    public function edit($id){
+    public function edit($id,Request $request){
         $Allkategori = Kategoribarang::select('id','nama')->where('parent_id','>', 0)->get();
         $kategori=[];
         foreach ($Allkategori as $value) {
@@ -82,13 +99,19 @@ class BarangController extends Controller
             $tags[] = $value->nama;
         }
         $query['tag'] = implode(',', $tags);
-        
-        return view('default/barang/form', array_merge($query,[
+        $response =  [
             'kategori' => $kategori, 
             'selected_kategori' => $selected_kategori, 
             'selected_display' => $selected_display ,
             'display' => $display
-                ]));
+                ];
+        if($request->api){
+            return response()->json([
+                'status' => true,
+                'data' => $response,
+            ]);
+        }
+        return view('default/barang/form', array_merge($query,$response));
 //        return view('default/barang/form', array_merge($query, ['parent' => $parent,'selected_parent'=>$selected_parent]));
     }
     
@@ -96,7 +119,6 @@ class BarangController extends Controller
         
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
-            'tag' => 'required',
             'kategori_id' => 'required',
             'hpp' => 'required|numeric',
             'harga' => 'required|numeric',
@@ -104,6 +126,12 @@ class BarangController extends Controller
         ],config('app.custom_error_message'));
         
         if ($validator->fails()) {
+            if($request->api){
+                return response()->json([
+                    'status' => true,
+                    'message' => $validator->errors()->first(),
+                ]);
+            }
             return redirect(url()->previous())
                         ->withErrors($validator)
                         ->withInput();
@@ -140,14 +168,19 @@ class BarangController extends Controller
             $barang_id = $request->id;
         }
         $tags = explode(',', substr($request->tag, 0, strlen($request->tag)-1));
-        
+        Tag_barang::where('barang_id',$barang_id)->delete();
         foreach ($tags as $value) {
             if($tt = trim($value)){
                 $tag = Tag::updateOrCreate(['nama' => $tt]);
                 Tag_barang::updateOrCreate(['barang_id' => $barang_id, 'tag_id' => $tag->id]);
             }
         }
-        
+        if($request->api){
+            return response()->json([
+                'status' => true,
+                'message' => '',
+            ]);
+        }
         return redirect('barang')->with('status', ['Sukses Tambah/Ubah Data']);
     }
     
@@ -183,17 +216,45 @@ class BarangController extends Controller
         }
     }
     
-    public function destroy($id){
+    public function destroy($id,Request $request){
         try {
             Tag_barang::where('barang_id', $id)->delete();
             Barang::find($id)->delete();
+            if($request->api){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'berhasil delete',
+                ]);
+            }
             return redirect('barang')->with('status', ['Sukses Hapus Data']);
         } catch (Exception $exc) {
             $error = [
                 'Data tidak bisa di hapus'
             ];
+            if($request->api){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Gagal delete' ,
+                ]);
+            }
             return redirect('barang')->withErrors($error);
         }
+    }
+    
+    public function sync(Request $request,$updated_at){
+        if(!$request->api){
+            abort(404);
+        }
+        $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
+                ->select('barang.display as display','barang.id as id','barang.nama as nama','hpp','harga',
+                        'hargaonline','kategori_barang.nama as kategori','gambar','keterangan','stok','kategori_id')
+                ->orderBy('id','desc')
+        ->where('barang.updated_at','>',$updated_at)
+        ->get();
+        
+        $response = ['status' => true,'data' => $querys ];
+        return response()->json($response);        
+        
     }
 
 }

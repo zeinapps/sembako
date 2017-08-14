@@ -15,7 +15,7 @@
                 </div>
                 
             </form>
-            
+            <h2>Total {{$total}}</h2>
             <table class="table table-condensed">
                 <thead>
                     <tr>

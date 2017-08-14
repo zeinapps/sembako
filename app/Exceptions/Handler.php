@@ -44,6 +44,19 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($request->api){
+            if ($exception instanceof \PDOException) {
+                $dbCode = trim($exception->getCode());
+                $errorMessage = $exception->getMessage();
+                switch ($dbCode)
+                {
+                    case 23000:
+                        $errorMessage = explode('(SQL:', $errorMessage)[0];
+                        break;
+                }
+            }
+            return response()->json(['status' => false,'message'=>$errorMessage]);
+        }
         return parent::render($request, $exception);
     }
 
