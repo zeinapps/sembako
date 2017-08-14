@@ -3,7 +3,7 @@
 <section id="cart_items">
     <div class="container">
         <div class="row">
-            <div class="col-sm-9 padding-right">
+            <div class="col-sm-12 padding-right">
                 @include('default.notifikasi.error')
                 @include('default.notifikasi.success')
            
@@ -20,7 +20,7 @@
                     {{ Form::token() }}
 
                     <div class="row">
-                        <div class="col-sm-9 row" >
+                        <div class="col-sm-12 row" >
                             <div class="features_items">
                                 <div id="div_keranjang"></div>
                             </div>
@@ -33,7 +33,14 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row">  	
+                    <div class="row">
+                        <div class="col-sm-12">
+                        <textarea id="area_keranjang" rows="4"></textarea>
+                        <label>Copy dan kirim pesanan di atas pada no WA {{Config::get('app.no_wa')}}</label>
+                        </div>
+                    </div>
+                    <hr>
+<!--                    <div class="row">  	
                         <div class="col-sm-12">
                             <div class="contact-form">
 
@@ -64,20 +71,20 @@
                                     </div>
                                     @endif
                                 </div>
-                                <!--                    <div class="form-group col-md-12">
+                                                    <div class="form-group col-md-12">
                                                         <p style="color: red;">*Wajib diisi, data pengiriman bisa diubah bila perlu</p>
-                                                    </div>-->
+                                                    </div>
 
                             </div>
                         </div>
 
-                    </div>  
+                    </div>  -->
 
                     {!! Form::close() !!}
                 </div>
 
             </div>
-            @include('eshop.sidebar')
+            
         </div>
     </div>
 </section> <!--/#cart_items-->

@@ -1,4 +1,4 @@
-<div class="col-sm-9 padding-right">
+<div class="col-sm-12 padding-right">
     <div class="product-details"><!--product-details-->
         <div class="col-sm-5">
             <div class="view-product box-ribbon-corner">
@@ -11,7 +11,7 @@
         <div class="col-sm-7">
             <div class="product-information"><!--/product-information-->
                 <!--<img src="/eshop/images/product-details/new.jpg" class="newarrival" alt="" />-->
-                <h2><%= produk.nama %></h2>
+                <h2><%= produk.nama.toUpperCase() %></h2>
                 <p>Keterangan: <%= produk.keterangan %></p>
                 <span>
                     <span>Rp <%= produk.hargaonline %></span><br>
@@ -43,7 +43,7 @@
                                             <img style="width: 85px;" src="/storage/images/produk/85/<%= val.gambar %>" alt="" />
                                         </a>
                                         <h2>Rp <%= val.hargaonline %></h2>
-                                        <p><%= val.nama %></p>
+                                        <p><%= val.nama.toUpperCase() %></p>
                                         <button data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('<%= val.id %>','<%= val.nama %>','/storage/images/produk/85/<%= val.gambar %>','<%= val.hargaonline %>')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
                                     </div>
                                 </div>

@@ -15,8 +15,9 @@
             loaddata(this.params['s'], false);
         });
 
-        this.get('#/kategori/:id', function (context) {
+        this.get('#/kategori/:id', function (context) {closekategori();
             loaddata(false, this.params['id']);
+            
         });
 
         this.get('#/carabeli', function (context) {
@@ -138,7 +139,7 @@
                         } else {
                             btn_favorit_or_batal = "<a id='link_suka_" + data[index].id + "' href='javascript: void(0)' onclick='suka(" + data[index].id + ")' class='btn btn-warning btn-xs '><i class='fa fa-star-o'></i> Favorit</a>";
                         }
-                        var html = "<div class='col-xs-6 col-sm-6 col-md-4 col-lg-4'>\n\
+                        var html = "<div class='col-xs-6 col-sm-4 col-md-4 col-lg-3'>\n\
                                     <div class='product-image-wrapper'> \n\
                                     <div class='single-products'> \n\
                                     <div class='productinfo text-center'> \n\
@@ -150,7 +151,7 @@
                                     </a>\n\
                                     <h2 style='margin-top: 5px;'>Rp" + data[index].hargaonline + "</h2>\n\
                                     <div style='height: 40px;'> \n\
-                                    <h4><strong>" + nama + "</strong></h4> \n\
+                                    <h4><strong>" + nama.toUpperCase() + "</strong></h4> \n\
                                     </div>\n\
                                     <p>" + data[index].kategori + "</p>\n\
                                     " + btn_favorit_or_batal + "\n\
@@ -205,3 +206,5 @@
 
 
 })(jQuery);
+
+

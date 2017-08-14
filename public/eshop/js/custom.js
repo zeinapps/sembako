@@ -104,12 +104,12 @@ function setJumlahKeranjang(jumlah) {
     $("#jumlah_item_keranjang_bottom").text(jumlah);
     var minpem = 50000;
     var kurangdikit = minpem - getTotalSementara() ;
-    var message = "Pastikan Anda sudah pernah menge-clik Cara Beli";
-    if(kurangdikit != 50000){
-        message =  "Total belanja saat ini Rp"+formatrupiah(getTotalSementara())+", Dapatkan \"Free Ongkir\" dengan belanja Rp"+formatrupiah(kurangdikit)+" lagi";
-    }else{
-        
-    }
+    var message = "Pusat Bantuan dan Informasi, chat WA "+no_wa;
+//    if(kurangdikit != 50000){
+//        message =  "Total belanja saat ini Rp"+formatrupiah(getTotalSementara());
+//    }else{
+//        
+//    }
     $("#jumlah_harga_keranjang_bottom").text("Rp"+formatrupiah(getTotalSementara()));
     $("#message_marque").text(message);
 }
@@ -158,7 +158,7 @@ function setKeranjang() {
 //                        </tr>\n\
 //                        ";
         
-        var row = "<div id='item_prod_" + arkeranjang[i].id + "' class='col-xs-6 col-sm-6 col-md-4 col-lg-4'>\n\
+        var row = "<div id='item_prod_" + arkeranjang[i].id + "' class='col-xs-6 col-sm-4 col-md-4 col-lg-3'>\n\
                         <div class='product-image-wrapper'>    \n\
                             <div class='single-products'>    \n\
                                 <div class='productinfo text-center'>    \n\
@@ -170,7 +170,7 @@ function setKeranjang() {
                                     </a>    \n\
                                     <h2>@" + arkeranjang[i].harga + "</h2>        \n\
                                     <div style='height: 40px;'>     \n\
-                                        <h4><strong>" + arkeranjang[i].nama + "</strong></h4>    \n\
+                                        <h4><strong>" + arkeranjang[i].nama.toUpperCase() + "</strong></h4>    \n\
                                     </div>    \n\
                                             <a onClick='plus_keranjang(" + arkeranjang[i].id + ")' class='btn btn-success btn-sm' href='javascript: void(0)'> + </a>\n\
                                             <input type='hidden' value='" + arkeranjang[i].id + "' name='id[]' />\n\
@@ -186,7 +186,7 @@ function setKeranjang() {
                     "
         $("#div_keranjang").append(row);
     }
-
+        
     hitungtotal();
 
 
@@ -293,8 +293,20 @@ function hitungtotal() {
     str_subtotal += "</div>";
     str_subtotal += "</div>";
     $("#total_keranjang").append(str_subtotal);
+    set_areatext();
 }
-
+function set_areatext(){
+    var json_keranjang = getCookieKeranjang();
+    var array_keranjang = jQuery.parseJSON(json_keranjang);
+    var copy_pesanan = "";
+    var nomer = 0;
+    for (var x in array_keranjang) {
+        nomer +=1;
+        copy_pesanan += nomer+") " + array_keranjang[x].nama + " ("+ $("#jum_id_" + array_keranjang[x].id).val() +") \n";
+    }
+    $("#area_keranjang").attr('rows', array_keranjang.length);
+    $("#area_keranjang").text(copy_pesanan);
+}
 function plus_keranjang(id) {
     $("#jum_id_" + id).val((parseInt($("#jum_id_" + id).val()) + 1));
     hitungtotal();
@@ -497,4 +509,14 @@ function formatrupiah(bilangan){
 //function kategori(id_kat){
 //    loaddata(false,id_kat);
 //}
+
+function openkategori(){
+    $('#modalkategori').modal({
+            show: 'true'
+        }); 
+}
+function closekategori(){
+   
+        $('#modalkategori').modal('hide')
+}
 

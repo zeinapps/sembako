@@ -101,7 +101,7 @@
                             <div class="mainmenu pull-left">
                                 <ul class="nav navbar-nav collapse navbar-collapse">
                                     <li><a href="/#/" class="active">Beranda</a></li>
-                                    <li><a href="/#/carabeli" class="active">Cara Pembelian</a></li>
+                                    <!--<li><a href="/#/carabeli" class="active">Cara Pembelian</a></li>-->
                                     <li><a href="/#/kontak" class="active">Kontak</a></li>
 
                                 </ul>
@@ -123,6 +123,7 @@
         <section>
             <div class="container" id="header-search" style="width:100%; ">
                 <nav class="row" id="search-form">
+                    
                     <div class="col-sm-12">
                         <!--<form action="{{ url('/produk') }}" method="GET">-->
                             <div class="input-group input-group-lg col-md-6 col-md-offset-3">
@@ -146,13 +147,15 @@
             </div>
         </div>
         @yield('content')
-        
+        <div id="tombol_etalase" class="alert alert-info" style="padding: 5px; margin-bottom: 0px;">
+            <a href='javascript: void(0)' onclick="openkategori()"><i class="fa fa-table"></i> <span class="label label-danger" >ETALASE</span></a>
+        </div>
         <div id="keranjang_bottom" class="alert alert-success" style="padding: 5px; margin-bottom: 0px;">
             <a style="margin-right: 5px;" href="/keranjang"><i class="fa fa-shopping-cart"></i> <span class="label label-danger" id="jumlah_item_keranjang_bottom">0</span> <span class="label label-danger" id="jumlah_harga_keranjang_bottom">Rp0</span></a>
             @if(!Auth::guest())
             <a href="/kesukaan"><i class="fa fa-star"></i> <span class="label label-danger" id="">{{Auth::check()?Auth::user()->kesukaan : 0}}</span></a>
             @endif
-            <a style="margin-right: 5px;" href="/#/carabeli"> <span class="label label-info" id="">Cara Beli</span></a>
+            <!--<a style="margin-right: 5px;" href="/#/carabeli"> <span class="label label-info" id="">Cara Beli</span></a>-->
         </div>
         <div id="marqueee" class="" style=" margin-bottom: 0px;"><marquee><span class="label label-danger" id="message_marque">0</span></marquee></div>
         
@@ -255,6 +258,43 @@
                 </div>
             </div>
         </div>
+        
+        <div class="modal fade" id="modalkategori" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                   <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+            @foreach(json_decode(Storage::get('json/kategori_barang.json')) as $parent)
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ $parent->id }}">
+                            @if($parent->child)<span class="badge pull-right"><i class="fa fa-plus"></i></span>@endif
+                            {{ $parent->nama }}
+                        </a>
+                    </h4>
+                </div>
+                @if($parent->child)
+                <div id="{{ $parent->id }}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <ul>
+                            @foreach($parent->child as $child)
+                            <li><a href='/#/kategori/{{ $child->id }}' >{{ $child->nama }} </a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                @endif
+            </div>
+            @endforeach
+            
+        </div><!--/category-products-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script>
             var nama_toko = "{{Config::get('app.nama_toko')}}";
             var no_wa = "{{Config::get('app.no_wa')}}";

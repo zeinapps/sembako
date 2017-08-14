@@ -2601,6 +2601,14 @@ h2.title {
     z-index: 1000;
 }
 
+#tombol_etalase {
+    position: fixed;
+    bottom:60px;
+    left: 0;
+    /*width: 25%;*/
+    z-index: 1000;
+}
+
 #marqueee {
     position: fixed;
     bottom:0px;
