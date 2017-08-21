@@ -35,7 +35,8 @@ class BarangController extends Controller
                         'hargaonline','kategori_barang.nama as kategori','gambar')
                 ->orderBy('id','desc');
         if($request->s){
-            $querys = $querys->where('barang.nama' ,'like' , "%$request->s%");
+            $querys = $querys->where('barang.nama' ,'like' , "%$request->s%")
+                    ->orWhere('kategori_barang.nama' ,'like' , "%$request->s%");
             $s = $request->s;
         }
         $querys = $querys->paginate($paginasi);
@@ -187,7 +188,7 @@ class BarangController extends Controller
     private function upload($file,$nama){
         $destination = storage_path().config('app.image_path_produk');
         $extension = $file->getClientOriginalExtension();
-        $filename = str_replace(' ', '-', $nama).'_'.time().'.'.$extension;
+        $filename = str_replace(' ', '-', $nama).'.'.$extension;
         $image = Image::make($file);
         $width = $image->width();
         $height = $image->height();

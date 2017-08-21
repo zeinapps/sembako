@@ -10,8 +10,13 @@
 <!--                <div id="div_content">
                 </div>-->
             </div>
-            
+            <div class="row" style="text-align: center" id="div_selanjutnya" >
+                <a id="a_selanjutnya" href="javascript: void(0)"  class="btn btn-info">Selanjutnya</a>
+                
+            </div>
+            <br>
         </div>
+        
     </div>
 </section>
 @endsection

@@ -66,7 +66,7 @@
 
     
     function loaddata(s_cari, kategori, options) {// Settings 
-        
+        $("#a_selanjutnya").show();
         var param = ""; 
         var cari = s_cari;
         if (s_cari) {
@@ -89,10 +89,13 @@
         next_url = settings.data_url;
         contents(el, settings); //initial data load
 
-        $(window).scroll(function () { //detact scroll
-            if ($(window).scrollTop() + $(window).height() >= $(document).height()) { //scrolled to bottom of the page
-                contents(el, settings); //load content chunk 
-            }
+//        $(window).scroll(function () { //detact scroll
+//            if ($(window).scrollTop() + $(window).height() >= $(document).height()) { //scrolled to bottom of the page
+//                contents(el, settings); //load content chunk 
+//            }
+//        });
+        $("#a_selanjutnya").click(function(){
+            contents(el, settings); 
         });
     }
     
@@ -162,13 +165,15 @@
                                     </div>";
 
                         el.append(html);
-
+                        
 
                     });
                     el.append("</div>");
                     next_url = jsonData.next_page_url;
                     if (jsonData.next_page_url === null) {
-                        el.append(record_end_txt); //show end record text
+                        $("#a_selanjutnya").hide();
+//                        $("#a_selanjutnya").append("");
+//                        el.append(record_end_txt); //show end record text
                         load_img.remove(); //remove loading img
                         end_record = true; //set end record flag on
                         return; //exit
