@@ -39,6 +39,7 @@
         });
         
         this.get('#/produk/:id', function (context) {
+            $("#a_selanjutnya").hide();
             context.app.swap('');
             end_record = true;
             var load_img = $('<img/>').attr('src', '/storage/images/ajax-loader.gif').addClass('loading-image');
@@ -66,7 +67,7 @@
 
     
     function loaddata(s_cari, kategori, options) {// Settings 
-        $("#a_selanjutnya").show();
+        $("#a_selanjutnya").hide();
         var param = ""; 
         var cari = s_cari;
         if (s_cari) {
@@ -177,6 +178,8 @@
                         load_img.remove(); //remove loading img
                         end_record = true; //set end record flag on
                         return; //exit
+                    }else{
+                        $("#a_selanjutnya").show();
                     }
 
 

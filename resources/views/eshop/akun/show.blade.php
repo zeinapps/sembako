@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-sm-9 padding-right">
+            <div class="col-sm-12 padding-right">
 
                 @include('default.notifikasi.error')
                 @include('default.notifikasi.success')
@@ -50,7 +50,7 @@
 
                 <br>
             </div>
-            @include('eshop.sidebar')
+            
         </div>
     </div>
 </section>

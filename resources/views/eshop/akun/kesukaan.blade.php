@@ -4,7 +4,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-9 padding-right">
+            <div class="col-sm-12 padding-right">
                 <div class="features_items" id="features_items">
 
                 </div>
@@ -14,7 +14,7 @@
                 </div>
                 
             </div>
-            @include('eshop.sidebar')
+            
         </div>
     </div>
     

@@ -68,7 +68,7 @@
                                     <li><a href="/register"><i class="fa fa-user"></i> Daftar</a></li>
                                     @else
                                     <li><a href="/kesukaan"><i class="fa fa-star"></i> Kesukaan <span class="label label-danger" id="jumlah_item_kesukaan">{{Auth::check()?Auth::user()->kesukaan : 0}}</span></a></li>
-                                    <li><a href="/transaksi"><i class="fa fa-table"></i> Transaksi</a></li>
+                                    <!--<li><a href="/transaksi"><i class="fa fa-table"></i> Transaksi</a></li>-->
                                     <li><a href="/akun"><i class="fa fa-user"></i> Akun</a></li>
                                     <li><a href="{{ url('/logout') }}"
                                            onclick="event.preventDefault();
