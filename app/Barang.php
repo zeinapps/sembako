@@ -13,4 +13,4 @@ class Barang extends Model
         'barcode','gambar','gambar1','gambar2','display'
     ];
 
-}
+    }

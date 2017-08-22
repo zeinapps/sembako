@@ -12,14 +12,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Barang;
 use App\Kategoribarang;
-use Validator;
 use DB;
-use Image;
-use Storage;
+use App\Log;
 
 class ProdukController extends Controller {
 
     public function index(Request $request) {
+        $timestamp = date("Y-m-d");
+        
+        $log = Log::where('created_at','like',"$timestamp%")->first();
+        if($log){
+            $log->update(['jumlah' => ($log->jumlah+1)]);
+        }else{
+            Log::create(['jumlah' => 1]);
+        }
+        
         if ($user = $request->user()) {
             $userid = $user->id;
         } else {

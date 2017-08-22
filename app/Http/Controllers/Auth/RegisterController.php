@@ -101,6 +101,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'hp' => $request->hp,
             'alamat' => $request->alamat,
+            'api_token' => bcrypt(md5($request->hp)),
             'password' => bcrypt($request->password),
         ]);
         

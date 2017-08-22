@@ -23,6 +23,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     });
     Route::post('/suka', 'Eshop\AkunController@suka');
     Route::post('/tidaksuka', 'Eshop\AkunController@tidaksuka');
+    Route::get('log',function () {
+        $data = App\Log::orderBy('created_at','desc')->get()->take(10);
+        return response()->json($data);
+    });
 });
 
 //Route::group([ 'middleware' => []], function () {
