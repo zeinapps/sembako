@@ -48,6 +48,9 @@
             this.load('/api/produk/'+this.params['id']).then(function(items) {
                 context.app.swap('');
                 var data = $.parseJSON(items);
+                if(!data.hasOwnProperty('produk')){
+                    window.location.href='/#/404';
+                }
                 context.render('/eshop/js/templates/produkdetil.html', {produk: data.produk, rekomended1: data.rekomended1, rekomended2: data.rekomended2})
                .appendTo(context.$element());
             });

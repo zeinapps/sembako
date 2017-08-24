@@ -36,20 +36,20 @@
 
     <body id="main">
         <header id="header"><!--header-->
-            <div class="header_top"><!--header_top-->
+<!--            <div class="header_top">header_top
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="contactinfo">
                                 <ul class="nav nav-pills">
                                     <li><a href="/"><i class="fa fa-phone"></i>/WA {{Config::get('app.no_wa')}}</a></li>
-                                    <!--<li><a href="/"><i class="fa fa-envelope"></i> zein.apps@gmail.com</a></li>-->
+                                    <li><a href="/"><i class="fa fa-envelope"></i> zein.apps@gmail.com</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div><!--/header_top-->
+            </div>/header_top-->
 
             <div class="header-middle"><!--header-middle-->
                 <div class="container">
@@ -57,11 +57,14 @@
                         <div class="col-sm-4">
                             <div class="logo pull-left">
                                 <a href="/">{{Config::get('app.nama_toko')}}</a>
-                            </div>
+                                <label style="font-size: 15px; margin-top: opx;"> Solusi warga sibuk</label>
+                            </div> 
                         </div>
                         <div class="col-sm-8">
                             <div class="shop-menu pull-right">
                                 <ul class="nav navbar-nav">
+                                    <li><a href="/#/"><i class="fa fa-table"></i> Beranda</a></li>
+                                    <li><a href="/#/kontak"><i class="fa fa-phone"></i> Kontak</a></li>
                                     <li><a href="/keranjang"><i class="fa fa-shopping-cart"></i> Keranjang <span class="label label-danger" id="jumlah_item_keranjang">0</span></a></li>
                                     @if (Auth::guest())
                                     <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
@@ -86,7 +89,7 @@
                 </div>
             </div><!--/header-middle-->
 
-            <div class="header-bottom"><!--header-bottom-->
+<!--            <div class="header-bottom">header-bottom
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-9">
@@ -101,23 +104,23 @@
                             <div class="mainmenu pull-left">
                                 <ul class="nav navbar-nav collapse navbar-collapse">
                                     <li><a href="/#/" class="active">Beranda</a></li>
-                                    <!--<li><a href="/#/carabeli" class="active">Cara Pembelian</a></li>-->
+                                    <li><a href="/#/carabeli" class="active">Cara Pembelian</a></li>
                                     <li><a href="/#/kontak" class="active">Kontak</a></li>
 
                                 </ul>
                             </div>
                         </div>
-                        <!--                        <div class="col-sm-3">
+                                                <div class="col-sm-3">
                                                     <form action="{{ url('/produk') }}" method="GET">
                                                         <div class="search_box pull-right">
                                                             <input type="text" placeholder="Search" name="s" value="@if(isset($s)){{  $s ? $s : '' }}@endif"/>
                                                         </div>
                                                     </form>
-                                                </div>-->
+                                                </div>
 
                     </div>
                 </div>
-            </div><!--/header-bottom-->
+            </div>/header-bottom-->
         </header><!--/header-->
         <br>
         <section>

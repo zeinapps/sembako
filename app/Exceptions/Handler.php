@@ -45,9 +45,9 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if($request->api){
+            $errorMessage = $exception->getMessage();
+            $dbCode = trim($exception->getCode());
             if ($exception instanceof \PDOException) {
-                $dbCode = trim($exception->getCode());
-                $errorMessage = $exception->getMessage();
                 switch ($dbCode)
                 {
                     case 23000:

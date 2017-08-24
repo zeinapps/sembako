@@ -104,7 +104,7 @@ function setJumlahKeranjang(jumlah) {
     $("#jumlah_item_keranjang_bottom").text(jumlah);
     var minpem = 50000;
     var kurangdikit = minpem - getTotalSementara() ;
-    var message = "Pusat Bantuan dan Informasi, chat WA "+no_wa;
+    var message = alamat_toko+". Pusat Bantuan, Informasi, dan Pemesanan chat WA "+no_wa+". Siap melayani Pesan-Antar*";
 //    if(kurangdikit != 50000){
 //        message =  "Total belanja saat ini Rp"+formatrupiah(getTotalSementara());
 //    }else{
