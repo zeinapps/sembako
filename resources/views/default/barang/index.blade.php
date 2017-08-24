@@ -24,6 +24,7 @@
                         <th>Nama</th>
                         <th>Kategori</th>
                         <th>Display</th>
+                        <th>Promo</th>
                         <th>HPP</th>
                         <th>Harga</th>
                         <th>Harga Online</th>
@@ -47,6 +48,9 @@
                         </td>
                         <td>
                             {{ $v->display }}
+                        </td>
+                        <td>
+                            {{ $v->ispromo }}
                         </td>
                         <td>
                             {{ $v->hpp }}

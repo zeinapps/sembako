@@ -31,7 +31,7 @@ class AkunController extends Controller
         DB::statement(DB::raw("set @rownum=$rownum"));
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
                 ->join('kesukaan', 'kesukaan.barang_id', '=', 'barang.id')
-                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','harga','keterangan',
+                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.id as id','barang.nama as nama','ispromo','ribbon','harga','keterangan',
                         'hargaonline','kategori_barang.nama as kategori','gambar',
                         DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                 ->where('kesukaan.user_id',Auth::user()->id)

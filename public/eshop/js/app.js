@@ -143,13 +143,19 @@
                         } else {
                             btn_favorit_or_batal = "<a id='link_suka_" + data[index].id + "' href='javascript: void(0)' onclick='suka(" + data[index].id + ")' class='btn btn-warning btn-xs '><i class='fa fa-star-o'></i> Favorit</a>";
                         }
+                        var ribbon = "Baru";
+                        var color_ribbon = "red";
+                        if(data[index].ribbon !== "" && data[index].ribbon !== null){
+                            ribbon = data[index].ribbon;
+                            color_ribbon = "blue";
+                        }
                         var html = "<div class='col-xs-6 col-sm-4 col-md-4 col-lg-3'>\n\
                                     <div class='product-image-wrapper'> \n\
                                     <div class='single-products'> \n\
                                     <div class='productinfo text-center'> \n\
                                     <a href='#/produk/" + data[index].id + "'> \n\
                                     <div class='box-ribbon-corner' align='center'> \n\
-                                        <div class='ribbon-corner red'><span>Baru</span></div> \n\
+                                        <div class='ribbon-corner "+color_ribbon+"'><span>"+ribbon+"</span></div> \n\
                                         <img src='/storage/images/produk/250/" + data[index].gambar + "' alt='' /> \n\
                                     </div> \n\
                                     </a>\n\
@@ -159,7 +165,7 @@
                                     </div>\n\
                                     <p>" + data[index].kategori + "</p>\n\
                                     " + btn_favorit_or_batal + "\n\
-                                    <button style='margin-top: 10px; width: 98%;' data-toggle='modal' data-target='#myModal' type='button' onClick=\"openmodal('" + data[index].id + "','" + nama + "','/storage/images/produk/85/" + data[index].gambar + "','" + data[index].hargaonline + "')\" class='btn btn-success add-to-cart'><i class='fa fa-shopping-cart'></i> + Keranjang</button>\n\
+                                    <button style='margin-top: 10px; width: 98%;' data-toggle='modal' data-target='#myModal' type='button' onClick=\"openmodal('" + data[index].id + "','" + nama + "','/storage/images/produk/85/" + data[index].gambar + "','" + data[index].hargaonline + "','" + data[index].ispromo + "','" + data[index].ribbon + "')\" class='btn btn-success add-to-cart'><i class='fa fa-shopping-cart'></i> + Keranjang</button>\n\
                                     </div> \n\
                                     </div> \n\
                                     </div> \n\

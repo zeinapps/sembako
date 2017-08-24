@@ -29,6 +29,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="ispromo" class="col-md-4 control-label">Ispromo</label>
+                <div class="col-md-6">
+                    {{ Form::select('ispromo', $ispromo, $selected_ispromo, ['class'=> 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="kategori" class="col-md-4 control-label">Kategori</label>
                 <div class="col-md-6">
                     {{ Form::select('kategori_id', $kategori, $selected_kategori, ['class'=> 'form-control']) }}
@@ -85,6 +91,17 @@
                     @if ($errors->has('keterangan'))
                     <span class="help-block">
                         <strong>{{ $errors->first('keterangan') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div> 
+            <div class="form-group">
+                <label for="ribbon" class="col-md-4 control-label">Ribbon:</label>
+                <div class="col-md-6">
+                    <input id="ribbon" type="text" class="form-control" name="ribbon" value="{{ isset($ribbon) ? $ribbon : old('ribbon') }}"  autofocus>
+                    @if ($errors->has('ribbon'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('ribbon') }}</strong>
                     </span>
                     @endif
                 </div>

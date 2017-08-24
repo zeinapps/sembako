@@ -2,7 +2,12 @@
     <div class="product-details"><!--product-details-->
         <div class="col-sm-5">
             <div class="view-product box-ribbon-corner">
-                <div class="ribbon-corner red"><span>Baru</span></div>
+                <% if(produk.ribbon) { %>
+                    <div class="ribbon-corner blue"><span><%= produk.ribbon %></span></div>
+                <% }else{ %>
+                    <div class="ribbon-corner red"><span>Baru</span></div>
+                <% } %>
+                
                 <img src="/storage/images/produk/450/<%= produk.gambar %>" alt="<%= produk.nama %>" />
             </div>
 
@@ -22,7 +27,7 @@
                 <a id="link_suka_<%= produk.id %>" href="javascript: void(0)" onclick="suka(<%= produk.id %>)" class="btn btn-warning "><i class="fa fa-star-o"></i> Favorit</a>
                 <% } %>
                 <br>
-                <button style="margin-top: 10px;" data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('<%= produk.id %>', '<%= produk.nama %>', '/storage/images/produk/85/<%= produk.gambar %>', '<%= produk.hargaonline %>')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
+                <button style="margin-top: 10px;" data-toggle="modal" data-target="#myModal" type="button" onClick="openmodal('<%= produk.id %>', '<%= produk.nama %>', '/storage/images/produk/85/<%= produk.gambar %>', '<%= produk.hargaonline %>', '<%= produk.ispromo %>', '<%= produk.ribbon %>')" class="btn btn-success add-to-cart"><i class="fa fa-shopping-cart"></i>Tambah ke keranjang</button>
                 <!--<a href=""><img src="/eshop/images/product-details/share.png" class="share img-responsive"  alt="" /></a>-->
             </div><!--/product-information-->
         </div>

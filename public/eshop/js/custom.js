@@ -157,14 +157,19 @@ function setKeranjang() {
 //                            </td>\n\
 //                        </tr>\n\
 //                        ";
-        
+        var ribbon = "Baru";
+        var color_ribbon = "red";
+        if(arkeranjang[i].ribbon !== "" && arkeranjang[i].ribbon !== null){
+            ribbon = arkeranjang[i].ribbon;
+            color_ribbon = "blue";
+        }
         var row = "<div id='item_prod_" + arkeranjang[i].id + "' class='col-xs-6 col-sm-4 col-md-4 col-lg-3'>\n\
                         <div class='product-image-wrapper'>    \n\
                             <div class='single-products'>    \n\
                                 <div class='productinfo text-center'>    \n\
-                                    <a href='/produk/" + arkeranjang[i].id + "'>     \n\
+                                    <a href='/#/produk/" + arkeranjang[i].id + "'>     \n\
                                         <div class='box-ribbon-corner' align='center'> \n\
-                                            <div class='ribbon-corner red'><span>Baru</span></div>        \n\
+                                            <div class='ribbon-corner "+color_ribbon+"'><span>"+ribbon+"</span></div>        \n\
                                             <img src=" + arkeranjang[i].image.replace("85", "250") + " />    \n\
                                         </div>  \n\
                                     </a>    \n\
@@ -200,6 +205,8 @@ $("#modal_tambahkan").click(function () {
     var nama = $("#modal_nama").val();
     var image = $("#modal_img").attr('src');
     var harga = $("#modal_harga").val();
+    var ribbon = $("#modal_ribbon").val();
+    var ispromo = $("#modal_ispromo").val();
     var json_keranjang = getCookieKeranjang();
     var array_keranjang = jQuery.parseJSON(json_keranjang);
     var in_array = false;
@@ -215,7 +222,7 @@ $("#modal_tambahkan").click(function () {
     if (in_array) {
         array_keranjang[x_array].jumlah = parseInt(array_keranjang[x_array].jumlah) + parseInt(jumlah_produk);
     } else {
-        var new_item = {"id": id_produk, "jumlah": jumlah_produk, "harga": harga, "nama": nama, "image": image};
+        var new_item = {"id": id_produk, "jumlah": jumlah_produk, "harga": harga, "nama": nama, "image": image, "ispromo": ispromo, "ribbon": ribbon};
         array_keranjang.push(new_item);
     }
     
@@ -318,10 +325,12 @@ function min_keranjang(id) {
     }
 }
 
-function openmodal(id, nama, img, harga) {
+function openmodal(id, nama, img, harga, ispromo, ribbon) {
     $("#modal_nama").val(nama);
     $("#modal_id").val(id);
     $("#modal_harga").val(harga);
+    $("#modal_ispromo").val(ispromo);
+    $("#modal_ribbon").val(ribbon);
     $("#modal_img").attr('src', img);
     $("#modal_input_jumlah").val(1);
 }

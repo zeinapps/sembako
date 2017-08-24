@@ -31,7 +31,7 @@ class BarangController extends Controller
         $s = null;
         DB::statement(DB::raw("set @rownum=$rownum"));
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
-                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.display as display','barang.id as id','barang.nama as nama','hpp','harga',
+                ->select(DB::raw('@rownum := @rownum + 1 AS no'),'barang.display as display','barang.ispromo as ispromo','barang.id as id','barang.nama as nama','hpp','harga',
                         'hargaonline','kategori_barang.nama as kategori','gambar')
                 ->orderBy('id','desc');
         if($request->s){
@@ -60,11 +60,15 @@ class BarangController extends Controller
             $kat[$i] = $value->nama;
         }
         $display = [0,1];
-         $selected_display = null;
+        $ispromo = [0,1];
+        $selected_display = null;
+        $selected_ispromo = null;
         $selected_kategori = null;
         $response = [
             'selected_display' => $selected_display ,
             'display' => $display,
+            'selected_ispromo' => $selected_ispromo ,
+            'ispromo' => $ispromo,
             'kategori' => $kategori, 
             'selected_kategori' => $selected_kategori ];
         if($request->api){
@@ -86,10 +90,13 @@ class BarangController extends Controller
         }
         $selected_kategori = null;
         $selected_display = null;
+        $selected_ispromo = null;
         $display = [0,1];
+        $ispromo = [0,1];
         $query = Barang::find($id)->toArray();
         $selected_kategori = $query['kategori_id'];
         $selected_display = $query['display'];
+        $selected_ispromo = $query['ispromo'];
         
         
         $tag= Tag_barang::join('tag','tag_barang.tag_id','=','tag.id')
@@ -104,7 +111,9 @@ class BarangController extends Controller
             'kategori' => $kategori, 
             'selected_kategori' => $selected_kategori, 
             'selected_display' => $selected_display ,
-            'display' => $display
+            'display' => $display,
+            'selected_ispromo' => $selected_ispromo ,
+            'ispromo' => $ispromo,
                 ];
         if($request->api){
             return response()->json([
@@ -156,6 +165,13 @@ class BarangController extends Controller
                 'keterangan' => $request->keterangan,
                 'display' => $request->display,
             ];
+        
+        if($request->ispromo){
+            $params['ispromo'] = $request->ispromo;                
+        }
+        if($request->ribbon){
+            $params['ribbon'] = $request->ribbon;                
+        }
         
         $barang_id = 0;
         if(!$request->id){

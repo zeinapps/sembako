@@ -10,7 +10,7 @@ class Barang extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'id', 'kategori_id', 'nama','deskripsi','hpp','harga','hargaonline',
-        'barcode','gambar','gambar1','gambar2','display'
+        'barcode','gambar','gambar1','gambar2','display','ispromo','ribbon'
     ];
 
     }

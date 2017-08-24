@@ -222,6 +222,8 @@
                             <input id="modal_nama" type="text" class="form-control" disabled="">
                             <input type="hidden" class="form-control" id="modal_id" >
                             <input type="hidden" class="form-control" id="modal_harga" >
+                            <input type="hidden" class="form-control" id="modal_ispromo" >
+                            <input type="hidden" class="form-control" id="modal_ribbon" >
                         </div>
                         <div class="form-group">
                             <label for="pwd">Jumlah:</label>

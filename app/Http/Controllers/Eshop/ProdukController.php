@@ -20,7 +20,7 @@ class ProdukController extends Controller {
     public function index(Request $request) {
         $timestamp = date("Y-m-d");
         
-        $log = Log::where('created_at','like',"$timestamp%")->first();
+        $log = Log::where('created_at','like',"%$timestamp%")->first();
         if($log){
             $log->update(['jumlah' => ($log->jumlah+1)]);
         }else{
@@ -163,7 +163,7 @@ class ProdukController extends Controller {
         $title = "Produk";
         DB::statement(DB::raw("set @rownum=$rownum"));
         $querys = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
-                ->select(DB::raw('@rownum := @rownum + 1 AS no'), 'barang.id as id', 'barang.nama as nama', 'harga', 'keterangan', 'hargaonline', 'kategori_barang.nama as kategori', 'gambar', DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
+                ->select(DB::raw('@rownum := @rownum + 1 AS no'), 'barang.id as id', 'barang.nama as nama', 'harga', 'keterangan', 'hargaonline', 'kategori_barang.nama as kategori', 'ispromo','ribbon','gambar', DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                 ->orderBy('id', 'desc');
 
         if ($request->kat) {
@@ -212,7 +212,7 @@ class ProdukController extends Controller {
             $userid = 0;
         }
         $query = Barang::join('kategori_barang', 'kategori_id', '=', 'kategori_barang.id')
-                        ->select(DB::raw('@rownum := @rownum + 1 AS no'), 'barang.id as id', 'barang.nama as nama', 'harga', 'keterangan', 'hargaonline', 'kategori_barang.nama as kategori', 'gambar', 'barcode', 'kategori_id', DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
+                        ->select(DB::raw('@rownum := @rownum + 1 AS no'), 'barang.id as id', 'barang.nama as nama', 'harga', 'keterangan', 'hargaonline', 'kategori_barang.nama as kategori', 'gambar', 'barcode','ispromo','ribbon', 'kategori_id', DB::raw("(SELECT barang_id FROM kesukaan WHERE user_id = $userid AND barang_id = barang.id) as suka"))
                         ->where('barang.id', $id)
                         ->where('barang.display', '1')->first();
         if (!$query) {

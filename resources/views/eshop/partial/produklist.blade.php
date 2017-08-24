@@ -11,7 +11,12 @@
                 <div class="productinfo text-center">
                     <a href="{{ url("/produk/".$v->id) }}">
                         <div class="box-ribbon-corner" align="center">
-                            <div class="ribbon-corner red"><span>Baru</span></div>
+                            @if($v->ribbon)
+                                <div class="ribbon-corner blue"><span>{{$v->ribbon}}</span></div>
+                            @else
+                                <div class="ribbon-corner red"><span>Baru</span></div>
+                            @endif
+                            
                             <img src="{{ Config::get("app.image_url_produk")."/250/".$v->gambar }}" alt="" />
                         </div>
                     </a>
